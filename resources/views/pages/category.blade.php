@@ -57,10 +57,10 @@
 
     @foreach ($page->content_blocks ?? [] as $contentBlock)
         @if (filled($contentBlock['text'] ?? null))
-            <section class="w-full px-5 sm:px-8 {{ $loop->first ? 'pt-4 pb-2 sm:pt-6 sm:pb-3' : 'py-2 sm:py-3' }}">
+            <section class="w-full px-5 sm:px-8 {{ $loop->first ? 'pt-4 pb-6 sm:pt-6 sm:pb-8' : 'py-6 sm:py-8' }}">
                 <div class="w-full">
                     @if (filled($contentBlock['heading'] ?? null))
-                        <h2 class="mb-4 text-xl font-semibold tracking-wide text-grhs-ink uppercase sm:text-2xl lg:text-3xl">{{ $contentBlock['heading'] }}</h2>
+                        <h2 class="mb-6 text-xl font-semibold tracking-wide text-grhs-ink uppercase sm:mb-8 sm:text-2xl lg:text-3xl">{{ $contentBlock['heading'] }}</h2>
                     @endif
                     <p class="whitespace-pre-line text-base leading-relaxed text-grhs-ink/80 sm:text-lg">{{ $contentBlock['text'] }}</p>
                 </div>

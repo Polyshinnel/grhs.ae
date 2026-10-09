@@ -37,7 +37,7 @@
         </div>
     </section>
 
-    <section class="flex h-[100px] items-center overflow-hidden bg-[#FAF8F3]" aria-label="Our partners">
+    <section class="mt-8 flex h-[100px] items-center overflow-hidden bg-[#FAF8F3]" aria-label="Our partners">
         <div class="swiper h-full w-full" data-partners-slider>
             <div class="swiper-wrapper h-full items-center">
                 @foreach ($partners as $partner)
