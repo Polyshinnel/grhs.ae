@@ -269,7 +269,7 @@ it('keeps the home, admin, and reserved system paths outside public page resolut
     $this->get('/')->assertOk()->assertSee('Quality hospitality');
     $this->get('/admin')->assertRedirect('/admin/login');
     $this->get('/catalogues')->assertOk();
-    $this->get('/contacts')->assertNotFound();
+    $this->get('/contacts')->assertOk()->assertSee('Contact GRHS');
     $this->get('/storage/missing-file.webp')->assertForbidden();
     $this->get('/build/missing.js')->assertNotFound();
     $this->get('/images/site/favicon.svg')->assertNotFound();

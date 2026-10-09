@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Catalogue;
 use App\Models\CataloguePageSettings;
+use App\Support\Schema\BreadcrumbSchema;
 use Illuminate\Contracts\View\View;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Storage;
@@ -13,7 +14,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class CataloguePageController extends Controller
 {
-    public function index(): View
+    public function index(BreadcrumbSchema $breadcrumbSchema): View
     {
         $catalogues = Catalogue::query()
             ->with(['brand:id,name', 'category:id,name,sort_order', 'concepts:id,name'])
@@ -44,6 +45,10 @@ class CataloguePageController extends Controller
             'categories' => $categories,
             'concepts' => $concepts,
             'settings' => CataloguePageSettings::query()->find(1),
+            'breadcrumbSchema' => $breadcrumbSchema->make([
+                ['name' => 'Home', 'url' => 'https://grhs.ae/'],
+                ['name' => 'Catalogues', 'url' => 'https://grhs.ae/catalogues'],
+            ], 'https://grhs.ae/catalogues'),
         ]);
     }
 

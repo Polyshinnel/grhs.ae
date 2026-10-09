@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'mapbox' => [
+        'public_token' => env('MAPBOX_PUBLIC_TOKEN'),
+    ],
+
+    'telegram' => [
+        'bot_token' => env('TELEGRAM_BOT_TOKEN'),
+    ],
+
 ];

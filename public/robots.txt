@@ -1,2 +1,6 @@
 User-agent: *
-Disallow:
+Allow: /
+
+Disallow: /admin/
+
+Sitemap: https://grhs.ae/sitemap.xml
