@@ -3,7 +3,7 @@ services:
   mysql:
     image: mysql:8.4
     container_name: grhs-mysql
-    restart: unless-stopped
+    restart: "no"
     ports:
       - "127.0.0.1:3307:3306"
     environment:
