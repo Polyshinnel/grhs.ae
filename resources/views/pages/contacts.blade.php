@@ -8,7 +8,7 @@
 
 @section('content')
     <section class="relative isolate flex h-svh min-h-svh w-full items-center overflow-hidden bg-grhs-paper text-grhs-ink" aria-labelledby="contacts-title">
-        <img class="absolute inset-0 -z-20 h-full w-full object-cover" src="{{ asset('images/home/contacts-hero.jpg') }}" alt="" fetchpriority="high">
+        <img class="absolute inset-0 -z-20 h-full w-full object-cover" src="{{ asset('images/home/contacts-hero.webp') }}" alt="" fetchpriority="high">
         <div class="mx-auto flex h-full w-full items-center justify-center px-5 sm:px-10 lg:px-16">
             <div class="w-fit max-w-2xl bg-grhs-paper/80 px-6 py-7 text-center backdrop-blur-sm sm:px-10 sm:py-10">
                 <p class="text-sm tracking-[0.24em] text-grhs-ink/75 uppercase sm:text-base">Golden Ratio Hospitality Supplies</p>

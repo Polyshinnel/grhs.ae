@@ -29,7 +29,7 @@
             loop
             playsinline
             preload="metadata"
-            poster="{{ asset('images/home/main-poster.jpg') }}"
+            poster="{{ asset('images/home/main-poster.webp') }}"
             aria-hidden="true"
             data-home-hero-video
         >
@@ -60,7 +60,7 @@
                     <div class="swiper-slide flex h-full items-center justify-center px-2 sm:px-3">
                         <img
                             class="max-h-full max-w-full object-contain"
-                            src="{{ asset("images/home/partners/{$partner}.png") }}"
+                            src="{{ asset("images/home/partners/{$partner}.webp") }}"
                             alt="{{ $partnerName }} logo"
                             width="180"
                             height="96"
@@ -74,25 +74,25 @@
 
     @php
         $bestsellers = [
-            ['name' => 'Kenai Ceramics', 'description' => 'Minimalist porcelain and stoneware, handcrafted from for the HoReCa sector.', 'image' => '1.jpg', 'alt' => 'Minimalist stoneware plates and bowls in natural tones'],
-            ['name' => 'Uccelo', 'description' => 'Our private label: durable pure white porcelain for hotels and restaurants at an affordable price.', 'image' => '2.jpg', 'alt' => 'White porcelain cup and saucer arranged on a table'],
-            ['name' => 'Le Coq Porcelain', 'description' => 'Elegant, high-performance porcelain for chefs and banqueting professionals.', 'image' => '3.jpg', 'alt' => 'White porcelain plate with a delicate floral pattern'],
-            ['name' => 'Gien', 'description' => 'A prestigious French manufacture founded in 1821, combining traditional craftsmanship with classic French decors.', 'image' => '4.jpg', 'alt' => 'Decorative porcelain plates with a blue and red pattern'],
+            ['name' => 'Kenai Ceramics', 'description' => 'Minimalist porcelain and stoneware, handcrafted from for the HoReCa sector.', 'image' => '1.webp', 'alt' => 'Minimalist stoneware plates and bowls in natural tones'],
+            ['name' => 'Uccelo', 'description' => 'Our private label: durable pure white porcelain for hotels and restaurants at an affordable price.', 'image' => '2.webp', 'alt' => 'White porcelain cup and saucer arranged on a table'],
+            ['name' => 'Le Coq Porcelain', 'description' => 'Elegant, high-performance porcelain for chefs and banqueting professionals.', 'image' => '3.webp', 'alt' => 'White porcelain plate with a delicate floral pattern'],
+            ['name' => 'Gien', 'description' => 'A prestigious French manufacture founded in 1821, combining traditional craftsmanship with classic French decors.', 'image' => '4.webp', 'alt' => 'Decorative porcelain plates with a blue and red pattern'],
         ];
 
         $categories = [
-            ['name' => 'Tableware', 'url' => '/tableware/', 'image' => '1.jpg', 'alt' => 'Hand placing white porcelain bowls and plates on a table'],
-            ['name' => 'Glassware', 'url' => '/glassware/', 'image' => '2.jpg', 'alt' => 'Clear glassware displayed on a dark surface'],
-            ['name' => 'Bar glass', 'url' => '/barware/', 'image' => '3.jpg', 'alt' => 'Stemmed wine glasses arranged on a bar'],
-            ['name' => 'Bar tools', 'url' => '/barware/', 'image' => '4.jpg', 'alt' => 'Bread presented on metal stands at a buffet'],
-            ['name' => 'Cutlery', 'url' => '/cutlery/', 'image' => '5.jpg', 'alt' => 'Fork and knife beside a ceramic plate'],
-            ['name' => 'Steak knives', 'url' => '/kitchenware/', 'image' => '6.jpg', 'alt' => 'Set of steak knives with patterned handles'],
-            ['name' => 'Wood', 'url' => '/wood/', 'image' => '7.jpg', 'alt' => 'Round wooden serving bowl on a table'],
-            ['name' => 'Kitchen accessories', 'url' => '/kitchenware/', 'image' => '8.jpg', 'alt' => 'Stainless steel gastronorm pans in a buffet counter'],
-            ['name' => 'Asian concepts', 'url' => '/glassware/', 'image' => '9.jpg', 'alt' => 'Asian-inspired restaurant table setting'],
-            ['name' => 'Buffet & hotel supplies', 'url' => '/kitchenware/', 'image' => '10.jpg', 'alt' => 'Black bowls and plates arranged on a dining table'],
-            ['name' => 'Metal & copperware', 'url' => '/kitchenware/', 'image' => '11.jpg', 'alt' => 'Elegant table setting with metal serving pieces'],
-            ['name' => 'Poolware', 'url' => '/poolware/', 'image' => '12.jpg', 'alt' => 'Bread displayed on black metal serving stands'],
+            ['name' => 'Tableware', 'url' => '/tableware/', 'image' => '1.webp', 'alt' => 'Hand placing white porcelain bowls and plates on a table'],
+            ['name' => 'Glassware', 'url' => '/glassware/', 'image' => '2.webp', 'alt' => 'Clear glassware displayed on a dark surface'],
+            ['name' => 'Bar glass', 'url' => '/barware/', 'image' => '3.webp', 'alt' => 'Stemmed wine glasses arranged on a bar'],
+            ['name' => 'Bar tools', 'url' => '/barware/', 'image' => '4.webp', 'alt' => 'Bread presented on metal stands at a buffet'],
+            ['name' => 'Cutlery', 'url' => '/cutlery/', 'image' => '5.webp', 'alt' => 'Fork and knife beside a ceramic plate'],
+            ['name' => 'Steak knives', 'url' => '/kitchenware/', 'image' => '6.webp', 'alt' => 'Set of steak knives with patterned handles'],
+            ['name' => 'Wood', 'url' => '/wood/', 'image' => '7.webp', 'alt' => 'Round wooden serving bowl on a table'],
+            ['name' => 'Kitchen accessories', 'url' => '/kitchenware/', 'image' => '8.webp', 'alt' => 'Stainless steel gastronorm pans in a buffet counter'],
+            ['name' => 'Asian concepts', 'url' => '/glassware/', 'image' => '9.webp', 'alt' => 'Asian-inspired restaurant table setting'],
+            ['name' => 'Buffet & hotel supplies', 'url' => '/kitchenware/', 'image' => '10.webp', 'alt' => 'Black bowls and plates arranged on a dining table'],
+            ['name' => 'Metal & copperware', 'url' => '/kitchenware/', 'image' => '11.webp', 'alt' => 'Elegant table setting with metal serving pieces'],
+            ['name' => 'Poolware', 'url' => '/poolware/', 'image' => '12.webp', 'alt' => 'Bread displayed on black metal serving stands'],
         ];
 
         $brands = [
@@ -130,7 +130,7 @@
 
     <section class="space-y-14 px-5 py-12 sm:space-y-20 sm:px-8 sm:py-20 lg:space-y-28 lg:py-28" aria-labelledby="about-title">
         <div class="grid items-center gap-7 sm:gap-10 lg:grid-cols-2 lg:gap-20">
-            <img class="aspect-[4/3] w-full object-cover" src="{{ asset('images/home/about-1.jpg') }}" alt="GRHS showroom displaying tableware, glassware and serving pieces" width="900" height="675" loading="lazy">
+            <img class="aspect-[4/3] w-full object-cover" src="{{ asset('images/home/about-1.webp') }}" alt="GRHS showroom displaying tableware, glassware and serving pieces" width="900" height="675" loading="lazy">
             <div class="text-grhs-ink">
                 <h2 id="about-title" class="mb-6 text-2xl font-semibold sm:mb-8 sm:text-3xl">About GRHS</h2>
                 <p class="text-base leading-relaxed sm:text-lg">GRHS – Golden Ratio Hospitality Supplies – is a Dubai-based supplier of premium tableware, glassware, cutlery, barware and kitchenware for the hospitality industry. We work with hotels, restaurants, cafés, bars, beach clubs and catering companies in Dubai, Abu Dhabi and across the UAE.</p>
@@ -143,7 +143,7 @@
                 <p class="text-base leading-relaxed sm:text-lg">We believe that the right plate, glass and cutlery shape the way guests remember a place. Handcrafted pieces made from natural materials, with distinctive shapes and patterns, give every table its own character and turn a meal into an experience guests want to repeat.</p>
                 <p class="mt-5 text-base leading-relaxed sm:mt-7 sm:text-lg">Our team supports projects from the first idea to repeat orders: we help with product selection for new openings and refurbishments, prepare samples and presentations for owners, chefs and interior designers, and deliver to venues across all Emirates. Visit our office in Business Bay, Dubai, to see samples, or contact us for catalogues and prices.</p>
             </div>
-            <img class="order-1 aspect-[4/3] w-full object-cover lg:order-2" src="{{ asset('images/home/about-2.jpg') }}" alt="Shelves displaying porcelain plates, bowls and serving dishes" width="900" height="675" loading="lazy">
+            <img class="order-1 aspect-[4/3] w-full object-cover lg:order-2" src="{{ asset('images/home/about-2.webp') }}" alt="Shelves displaying porcelain plates, bowls and serving dishes" width="900" height="675" loading="lazy">
         </div>
     </section>
 
