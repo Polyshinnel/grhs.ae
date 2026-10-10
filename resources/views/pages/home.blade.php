@@ -2,7 +2,7 @@
 
 @section('title', 'Restaurant & Hotel Tableware Supplier in Dubai, UAE | GRHS')
 @section('description', 'HoReCa supplier in Dubai: premium tableware, glassware, cutlery, barware and kitchenware for hotels and restaurants across the UAE.')
-@section('canonical', url('/'))
+@section('canonical', '/')
 
 @section('content')
     @php
@@ -47,7 +47,7 @@
                     Premium tableware, glassware, cutlery and barware for hotels, restaurants and cafés across the UAE.
                 </p>
             </div>
-            <a href="/catalogues" class="inline-flex min-h-12 items-center border border-white/80 px-7 text-xs tracking-[0.2em] text-white uppercase transition-colors hover:bg-white hover:text-grhs-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-sm">
+            <a href="/catalogues/" class="inline-flex min-h-12 items-center border border-white/80 px-7 text-xs tracking-[0.2em] text-white uppercase transition-colors hover:bg-white hover:text-grhs-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-sm">
                 Catalogues
             </a>
         </div>
@@ -110,7 +110,7 @@
     <section class="overflow-hidden px-5 py-16 sm:px-8 sm:py-20 lg:py-28" aria-labelledby="bestsellers-title">
         <div class="mb-8 flex items-end justify-between gap-6 sm:mb-12">
             <h2 id="bestsellers-title" class="text-2xl font-semibold tracking-[0.12em] uppercase sm:text-3xl">BESTSELLERS</h2>
-            <a href="/catalogues" class="shrink-0 text-sm tracking-[0.12em] text-grhs-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 sm:text-base">all catalogues</a>
+            <a href="/catalogues/" class="shrink-0 text-sm tracking-[0.12em] text-grhs-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 sm:text-base">all catalogues</a>
         </div>
 
         <div class="w-full">
@@ -150,7 +150,7 @@
     <section class="px-5 pt-12 pb-0 sm:px-8 sm:pt-16 sm:pb-0 lg:pt-20 lg:pb-0" aria-labelledby="categories-title">
         <div class="mb-8 flex items-end justify-between gap-6 sm:mb-12">
             <h2 id="categories-title" class="text-2xl font-semibold tracking-[0.12em] uppercase sm:text-3xl">CATEGORIES</h2>
-            <a href="/catalogues" class="shrink-0 text-sm tracking-[0.12em] text-grhs-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 sm:text-base">all catalogues</a>
+            <a href="/catalogues/" class="shrink-0 text-sm tracking-[0.12em] text-grhs-ink underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 sm:text-base">all catalogues</a>
         </div>
         <div class="grid grid-cols-2 gap-x-3 gap-y-4 sm:grid-cols-3 sm:gap-x-4 sm:gap-y-6 lg:grid-cols-6 lg:gap-x-5 lg:gap-y-8">
             @foreach ($categories as $category)

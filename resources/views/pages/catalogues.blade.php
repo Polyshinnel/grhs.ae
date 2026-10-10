@@ -10,7 +10,7 @@
 
 @section('title', $seoTitle)
 @section('description', $seoDescription)
-@section('canonical', url('/catalogues'))
+@section('canonical', '/catalogues')
 @section('og_image', $ogImage)
 @section('header_black', $settings?->header_black ? 'true' : 'false')
 

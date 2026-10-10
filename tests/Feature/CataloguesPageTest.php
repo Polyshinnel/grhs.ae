@@ -25,7 +25,7 @@ it('renders the public catalogue page before the dynamic public page route', fun
     $this->getWithExactUri('/catalogues/')
         ->assertOk()
         ->assertSee('Catalogue Library')
-        ->assertSee(route('catalogues.index'), false);
+        ->assertSee('href="/catalogues"', false);
 
     expect(route('catalogues.index'))->toEndWith('/catalogues');
 });
@@ -161,7 +161,7 @@ it('uses page settings for SEO and header theme, with safe defaults when setting
         ->assertSee('property="og:title" content="Catalogue SEO title"', false)
         ->assertSee('property="og:description" content="Catalogue SEO description"', false)
         ->assertSee('property="og:image" content="'.url('/storage/catalogues/page-settings/og.webp').'"', false)
-        ->assertSee('rel="canonical" href="'.url('/catalogues').'"', false)
+        ->assertSee('rel="canonical" href="https://grhs.ae/catalogues/"', false)
         ->assertSee('Our catalogues')
         ->assertSee('Browse our selected collections.')
         ->assertSee('data-header-theme="black"', false);

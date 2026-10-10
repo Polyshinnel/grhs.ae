@@ -12,7 +12,7 @@
 
 @section('title', $seoTitle)
 @section('description', $seoDescription)
-@section('canonical', url($page->public_path))
+@section('canonical', $page->public_path)
 @section('og_image', $ogImage)
 @section('header_black', $page->header_black ? 'true' : 'false')
 

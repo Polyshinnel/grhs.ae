@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @php
+        $canonicalPath = trim($__env->yieldContent('canonical'));
+        $canonicalUrl = app(\App\Support\Seo\CanonicalUrl::class)->make($canonicalPath !== '' ? $canonicalPath : null);
+    @endphp
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Golden Ratio Hospitality Solutions">
     <title>@yield('title', 'GRHS | Golden Ratio Hospitality Solutions')</title>
     <meta name="description" content="@yield('description', 'Golden Ratio Hospitality Solutions — hospitality equipment and tableware in Dubai.')">
-    <link rel="canonical" href="@yield('canonical', url()->current())">
+    <link rel="canonical" href="{{ $canonicalUrl }}">
     <meta property="og:title" content="@yield('title', 'GRHS | Golden Ratio Hospitality Solutions')">
     <meta property="og:description" content="@yield('description', 'Golden Ratio Hospitality Solutions — hospitality equipment and tableware in Dubai.')">
-    <meta property="og:url" content="@yield('canonical', url()->current())">
+    <meta property="og:url" content="{{ $canonicalUrl }}">
     @hasSection('og_image')
         <meta property="og:image" content="@yield('og_image')">
     @endif

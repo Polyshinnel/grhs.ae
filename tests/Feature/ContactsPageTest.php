@@ -34,7 +34,7 @@ it('renders the contacts page with the specified headings and SEO metadata', fun
         ->assertSee('<meta name="description" content="GRHS, Office 2203, Ontario Tower, Business Bay, Dubai. Call +971 58 533 8524, WhatsApp or email sales@grhs.ae for catalogues and prices.">', false)
         ->assertSee('<meta property="og:title" content="Contact GRHS – HoReCa Supplier in Business Bay, Dubai">', false)
         ->assertSee('<meta property="og:description" content="GRHS, Office 2203, Ontario Tower, Business Bay, Dubai. Call +971 58 533 8524, WhatsApp or email sales@grhs.ae for catalogues and prices.">', false)
-        ->assertSee('<link rel="canonical" href="https://grhs.ae/contacts">', false)
+        ->assertSee('<link rel="canonical" href="https://grhs.ae/contacts/">', false)
         ->assertSee('<meta property="og:image" content="'.asset('images/home/main-poster.jpg').'">', false);
 });
 

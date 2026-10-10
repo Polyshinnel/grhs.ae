@@ -2,7 +2,7 @@
 
 @section('title', 'Contact GRHS – HoReCa Supplier in Business Bay, Dubai')
 @section('description', 'GRHS, Office 2203, Ontario Tower, Business Bay, Dubai. Call +971 58 533 8524, WhatsApp or email sales@grhs.ae for catalogues and prices.')
-@section('canonical', 'https://grhs.ae/contacts')
+@section('canonical', '/contacts')
 @section('og_image', asset('images/home/main-poster.jpg'))
 @section('header_black', 'true')
 

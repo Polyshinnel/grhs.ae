@@ -18,7 +18,7 @@ it('renders a published category page at its stored public path', function () {
     $this->getWithExactUri('/tableware/')
         ->assertOk()
         ->assertSee('TABLEWARE')
-        ->assertSee('rel="canonical" href="'.url('/tableware').'"', false);
+        ->assertSee('rel="canonical" href="https://grhs.ae/tableware/"', false);
 });
 
 it('returns 404 for an unpublished category page', function () {
@@ -41,7 +41,7 @@ it('renders a published brand page at its stored public path', function () {
     $this->getWithExactUri('/tableware/kenai/')
         ->assertOk()
         ->assertSee('Kenai Ceramics')
-        ->assertSee('rel="canonical" href="'.url('/tableware/kenai').'"', false);
+        ->assertSee('rel="canonical" href="https://grhs.ae/tableware/kenai/"', false);
 });
 
 it('returns 404 for an unpublished brand page', function () {

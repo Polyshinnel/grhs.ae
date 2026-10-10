@@ -16,7 +16,7 @@
 
 @section('title', $seoTitle)
 @section('description', $seoDescription)
-@section('canonical', url($page->public_path))
+@section('canonical', $page->public_path)
 @section('og_image', $ogImage)
 @section('header_black', $page->header_black ? 'true' : 'false')
 
@@ -40,7 +40,7 @@
         @endif
         <div data-brand-grid="{{ $gridVariant }}" data-brand-count="{{ $brands->count() }}" class="grid {{ $gridVariant === 'single' ? 'grid-cols-1' : ($gridVariant === 'double' ? 'grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-0' : 'grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3') }}">
             @foreach ($brands as $brandPage)
-                <a href="{{ $brandPage->public_path }}" aria-label="{{ $brandPage->display_name }}" class="group relative isolate block w-full min-w-0 overflow-hidden bg-grhs-ink focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-white {{ $gridVariant === 'single' ? 'aspect-square sm:aspect-[16/8] max-h-[42rem]' : ($gridVariant === 'double' ? 'aspect-square sm:aspect-[4/3]' : 'aspect-square') }}">
+                <a href="{{ rtrim($brandPage->public_path, '/') }}/" aria-label="{{ $brandPage->display_name }}" class="group relative isolate block w-full min-w-0 overflow-hidden bg-grhs-ink focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-white {{ $gridVariant === 'single' ? 'aspect-square sm:aspect-[16/8] max-h-[42rem]' : ($gridVariant === 'double' ? 'aspect-square sm:aspect-[4/3]' : 'aspect-square') }}">
                     @if ($brandPage->category_image_path)
                         <img class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none" src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($brandPage->category_image_path) }}" alt="{{ $brandPage->category_image_alt ?? '' }}" loading="lazy">
                     @endif
