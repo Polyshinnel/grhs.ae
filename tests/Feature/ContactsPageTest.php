@@ -12,7 +12,7 @@ use Livewire\Livewire;
 uses(RefreshDatabase::class);
 
 it('renders the contacts page with the specified headings and SEO metadata', function () {
-    $response = $this->get('/contacts')->assertOk();
+    $response = $this->getWithExactUri('/contacts/')->assertOk();
     $content = $response->getContent();
 
     expect(substr_count($content, '<h1'))->toBe(1);
@@ -27,7 +27,7 @@ it('renders the contacts page with the specified headings and SEO metadata', fun
         ->assertSee('Get in Touch')
         ->assertSee('data-header-theme="black"', false)
         ->assertSee('class="relative isolate flex h-svh min-h-svh w-full items-center overflow-hidden bg-grhs-paper text-grhs-ink"', false)
-        ->assertSee('src="'.asset('images/home/contacts-hero.jpg').'"', false)
+        ->assertSee('src="'.asset('images/home/contacts-hero.webp').'"', false)
         ->assertSee('GRHS – Golden Ratio Hospitality Supplies – is a Dubai-based supplier of tableware, glassware, cutlery, barware and kitchenware for hotels, restaurants and cafes across the UAE. Visit our office in Ontario Tower, Business Bay, to see samples from our collections and discuss your project with our team.')
         ->assertSee('Contact us to request brand catalogues and prices, order samples, get a proposal for a new opening or refurbishment, or place a repeat order. We work with owners, F&amp;B managers, chefs, purchasing teams and interior designers, and deliver to venues in Dubai, Abu Dhabi and all other Emirates.', false)
         ->assertSee('<title>Contact GRHS – HoReCa Supplier in Business Bay, Dubai</title>', false)
@@ -50,7 +50,7 @@ it('renders contact details from settings with telephone email and ordered socia
         ],
     ]);
 
-    $response = $this->get('/contacts')->assertOk()
+    $response = $this->getWithExactUri('/contacts/')->assertOk()
         ->assertSee('Custom office address')
         ->assertSee('href="tel:+971501112233"', false)
         ->assertSee('href="mailto:hello@example.com"', false)
@@ -83,7 +83,7 @@ it('reuses configured contact details in the shared footer on other pages', func
 });
 
 it('renders safely when contact settings or social links are absent', function () {
-    $response = $this->get('/contacts')->assertOk();
+    $response = $this->getWithExactUri('/contacts/')->assertOk();
     $contactSection = Str::between(
         $response->getContent(),
         '<section class="bg-grhs-sand/50',
@@ -94,7 +94,7 @@ it('renders safely when contact settings or social links are absent', function (
 
     ContactSettings::query()->forceCreate(['id' => 1, 'social_links' => null]);
 
-    $response = $this->get('/contacts')->assertOk();
+    $response = $this->getWithExactUri('/contacts/')->assertOk();
     $contactSection = Str::between(
         $response->getContent(),
         '<section class="bg-grhs-sand/50',
@@ -109,7 +109,7 @@ it('renders safely when contact settings or social links are absent', function (
 it('omits the map when coordinates are absent and shows it when configured with a Mapbox token', function () {
     ContactSettings::query()->forceCreate(['id' => 1, 'map_latitude' => null, 'map_longitude' => null]);
 
-    $this->get('/contacts')->assertOk()
+    $this->getWithExactUri('/contacts/')->assertOk()
         ->assertDontSee('data-contact-map', false)
         ->assertSee('The office map is currently unavailable.');
 
@@ -119,7 +119,7 @@ it('omits the map when coordinates are absent and shows it when configured with 
     ]);
     config(['services.mapbox.public_token' => 'pk.example-token']);
 
-    $this->get('/contacts')->assertOk()
+    $this->getWithExactUri('/contacts/')->assertOk()
         ->assertSee('data-contact-map', false)
         ->assertSee('data-latitude="25.1858999"', false)
         ->assertSee('data-longitude="55.2621375"', false)
@@ -127,7 +127,7 @@ it('omits the map when coordinates are absent and shows it when configured with 
 });
 
 it('renders the active contact form with its enquiry endpoint', function () {
-    $this->get('/contacts')->assertOk()
+    $this->getWithExactUri('/contacts/')->assertOk()
         ->assertSee('action="'.route('contacts.enquiry').'"', false)
         ->assertSee('id="contacts-form-status"', false)
         ->assertSee('name="website"', false)

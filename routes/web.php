@@ -4,6 +4,7 @@ use App\Http\Controllers\CataloguePageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactInquiryController;
 use App\Http\Controllers\PublicPageController;
+use App\Http\Middleware\NormalizePublicPageTrailingSlash;
 use App\Models\ContactSettings;
 use App\Support\Schema\OrganizationSchema;
 use Illuminate\Support\Facades\Route;
@@ -14,8 +15,12 @@ Route::get('/', function (OrganizationSchema $organizationSchema) {
     ]);
 })->name('home');
 
-Route::get('/catalogues', [CataloguePageController::class, 'index'])->name('catalogues.index');
-Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+Route::get('/catalogues', [CataloguePageController::class, 'index'])
+    ->middleware(NormalizePublicPageTrailingSlash::class)
+    ->name('catalogues.index');
+Route::get('/contacts', [ContactController::class, 'index'])
+    ->middleware(NormalizePublicPageTrailingSlash::class)
+    ->name('contacts.index');
 Route::post('/contacts/enquiry', [ContactInquiryController::class, 'contact'])
     ->middleware('throttle:contact-inquiries')
     ->name('contacts.enquiry');
@@ -30,5 +35,6 @@ Route::get('/brand-catalogues/{brandPage}/download', [PublicPageController::clas
     ->name('brand-catalogues.download');
 
 Route::get('/{publicPath}', [PublicPageController::class, 'show'])
+    ->middleware(NormalizePublicPageTrailingSlash::class)
     ->where('publicPath', '(?!(?:admin|catalogues|contacts|storage|build|themes)(?:/|$)|.*\.[^/]+$).+')
     ->name('public-pages.show');

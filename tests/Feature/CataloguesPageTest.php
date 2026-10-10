@@ -22,7 +22,7 @@ function createPublishedCatalogue(array $attributes = [], array $concepts = []):
 }
 
 it('renders the public catalogue page before the dynamic public page route', function () {
-    $this->get('/catalogues')
+    $this->getWithExactUri('/catalogues/')
         ->assertOk()
         ->assertSee('Catalogue Library')
         ->assertSee(route('catalogues.index'), false);
@@ -40,7 +40,7 @@ it('shows only published catalogues and keeps repeated brands as separate cards 
     createPublishedCatalogue(['brand_id' => $brand->id, 'category_id' => $secondCategory->id, 'sort_order' => 5]);
     $draft = Catalogue::factory()->create(['brand_id' => $brand->id, 'is_published' => false]);
 
-    $response = $this->get('/catalogues')->assertOk()
+    $response = $this->getWithExactUri('/catalogues/')->assertOk()
         ->assertSee('Aoyama')
         ->assertSee('Glassware')
         ->assertSee('Tableware')
@@ -69,7 +69,7 @@ it('renders linked concepts, filter IDs from published catalogues, and an image 
     $draft = Catalogue::factory()->for($unusedBrand)->for($unusedCategory)->create(['is_published' => false]);
     $draft->concepts()->sync([$unusedConcept->id]);
 
-    $this->get('/catalogues')->assertOk()
+    $this->getWithExactUri('/catalogues/')->assertOk()
         ->assertSee('Visible Brand')
         ->assertSee('Visible Category')
         ->assertSee('data-catalogue-category-group', false)
@@ -95,7 +95,7 @@ it('prefers the compressed PDF for viewing and the original PDF for downloading'
         'compressed_pdf_path' => 'catalogues/compressed/catalogue.pdf',
     ]);
 
-    $this->get('/catalogues')->assertOk()
+    $this->getWithExactUri('/catalogues/')->assertOk()
         ->assertSee('href="/storage/catalogues/compressed/catalogue.pdf"', false)
         ->assertSee('href="'.route('catalogues.download', $catalogue).'"', false);
 
@@ -113,7 +113,7 @@ it('uses the original PDF for viewing and compressed PDF for downloading as fall
     $viewOnly = createPublishedCatalogue(['original_pdf_path' => 'catalogues/original/only.pdf']);
     $downloadOnly = createPublishedCatalogue(['compressed_pdf_path' => 'catalogues/compressed/only.pdf']);
 
-    $this->get('/catalogues')->assertOk()
+    $this->getWithExactUri('/catalogues/')->assertOk()
         ->assertSee('href="/storage/catalogues/original/only.pdf"', false)
         ->assertSee('href="/storage/catalogues/compressed/only.pdf"', false);
 
@@ -131,14 +131,14 @@ it('does not offer file actions when no PDF is set and blocks draft or unsafe do
     Storage::disk('public')->put('catalogues/draft.pdf', '%PDF-draft');
     $unsafe = createPublishedCatalogue(['original_pdf_path' => '../private/secret.pdf']);
 
-    $this->get('/catalogues')->assertOk()
+    $this->getWithExactUri('/catalogues/')->assertOk()
         ->assertDontSee(route('catalogues.download', $empty), false);
     $this->get(route('catalogues.download', $draft))->assertNotFound();
     $this->get(route('catalogues.download', $unsafe))->assertNotFound();
 });
 
 it('uses page settings for SEO and header theme, with safe defaults when settings are absent', function () {
-    $this->get('/catalogues')->assertOk()
+    $this->getWithExactUri('/catalogues/')->assertOk()
         ->assertSee('<title>Product catalogues | GRHS</title>', false)
         ->assertSee('property="og:image" content="'.asset('images/home/main-poster.jpg').'"', false)
         ->assertSee('data-header-theme="white"', false);
@@ -155,7 +155,7 @@ it('uses page settings for SEO and header theme, with safe defaults when setting
         'header_black' => true,
     ]);
 
-    $this->get('/catalogues')->assertOk()
+    $this->getWithExactUri('/catalogues/')->assertOk()
         ->assertSee('<title>Catalogue SEO title</title>', false)
         ->assertSee('<meta name="description" content="Catalogue SEO description">', false)
         ->assertSee('property="og:title" content="Catalogue SEO title"', false)

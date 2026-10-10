@@ -15,7 +15,7 @@ it('renders a published category page at its stored public path', function () {
         'is_published' => true,
     ]);
 
-    $this->get('/tableware')
+    $this->getWithExactUri('/tableware/')
         ->assertOk()
         ->assertSee('TABLEWARE')
         ->assertSee('rel="canonical" href="'.url('/tableware').'"', false);
@@ -27,7 +27,7 @@ it('returns 404 for an unpublished category page', function () {
         'is_published' => false,
     ]);
 
-    $this->get('/tableware')->assertNotFound();
+    $this->getWithExactUri('/tableware/')->assertNotFound();
 });
 
 it('renders a published brand page at its stored public path', function () {
@@ -38,7 +38,7 @@ it('renders a published brand page at its stored public path', function () {
         'is_published' => true,
     ]);
 
-    $this->get('/tableware/kenai')
+    $this->getWithExactUri('/tableware/kenai/')
         ->assertOk()
         ->assertSee('Kenai Ceramics')
         ->assertSee('rel="canonical" href="'.url('/tableware/kenai').'"', false);
@@ -51,7 +51,7 @@ it('returns 404 for an unpublished brand page', function () {
         'is_published' => false,
     ]);
 
-    $this->get('/tableware/kenai')->assertNotFound();
+    $this->getWithExactUri('/tableware/kenai/')->assertNotFound();
 });
 
 it('renders a published standalone brand page at its stored root path', function () {
@@ -62,7 +62,7 @@ it('renders a published standalone brand page at its stored root path', function
         'is_published' => true,
     ]);
 
-    $this->get('/ucello')
+    $this->getWithExactUri('/ucello/')
         ->assertOk()
         ->assertSee('Uccello');
 });
@@ -83,7 +83,7 @@ it('chooses category grid layout from the published brand count', function (int 
         ]);
     }
 
-    $this->get('/tableware')
+    $this->getWithExactUri('/tableware/')
         ->assertOk()
         ->assertSee('data-brand-grid="'.$gridVariant.'"', false);
 })->with([
@@ -118,7 +118,7 @@ it('shows only published brand pages in sort order and links to their stored pat
         'sort_order' => 1,
     ]);
 
-    $this->get('/wood')
+    $this->getWithExactUri('/wood/')
         ->assertOk()
         ->assertSee('href="/wood/historical-brand-url"', false)
         ->assertSee('href="/wood/later-brand"', false)
@@ -132,7 +132,7 @@ it('renders an empty category brand grid without placeholder cards', function ()
         'is_published' => true,
     ]);
 
-    $this->get('/empty-category')
+    $this->getWithExactUri('/empty-category/')
         ->assertOk()
         ->assertSee('data-brand-grid="grid"', false)
         ->assertSee('data-brand-count="0"', false);
@@ -145,7 +145,7 @@ it('accepts a historical trailing slash without redirecting', function () {
         'is_published' => true,
     ]);
 
-    $this->get('/glassware/ishizuka/')
+    $this->getWithExactUri('/glassware/ishizuka/')
         ->assertOk()
         ->assertHeaderMissing('Location');
 });
@@ -163,7 +163,7 @@ it('uses brand logo and name fallbacks and a default open graph image', function
         'is_published' => true,
     ]);
 
-    $this->get('/glassware/aoyama')
+    $this->getWithExactUri('/glassware/aoyama/')
         ->assertOk()
         ->assertSee('Aoyama Glass')
         ->assertSee('src="/storage/brands/aoyama-logo.webp"', false)
@@ -178,7 +178,7 @@ it('uses the uploaded open graph image as an absolute URL', function () {
         'is_published' => true,
     ]);
 
-    $this->get('/glassware/og-image')
+    $this->getWithExactUri('/glassware/og-image/')
         ->assertOk()
         ->assertSee('property="og:image" content="'.url('/storage/brand-pages/og.webp').'"', false);
 });
@@ -194,7 +194,7 @@ it('renders normal and reverse blocks safely and omits empty headings', function
         ],
     ]);
 
-    $this->get('/glassware/blocks')
+    $this->getWithExactUri('/glassware/blocks/')
         ->assertOk()
         ->assertSee('data-content-direction="normal"', false)
         ->assertSee('data-content-direction="reverse"', false)
@@ -216,7 +216,7 @@ it('renders a block without a heading or image as a single text column', functio
         ],
     ]);
 
-    $this->get('/glassware/text-only')
+    $this->getWithExactUri('/glassware/text-only/')
         ->assertOk()
         ->assertSee('Text without media')
         ->assertDontSee('mb-5 text-xl font-semibold tracking-wide', false)
@@ -231,22 +231,22 @@ it('omits the catalogue section when no PDF is set', function () {
         'catalogue_file_path' => null,
     ]);
 
-    $this->get('/barware/birdy')
+    $this->getWithExactUri('/barware/birdy/')
         ->assertOk()
         ->assertDontSee('Download the catalog');
 });
 
 it('links to the uploaded PDF through the public filesystem disk', function () {
     $brand = Brand::factory()->create(['name' => 'Birdy']);
-    BrandPage::factory()->for($brand)->create([
+    $brandPage = BrandPage::factory()->for($brand)->create([
         'public_path' => '/barware/birdy',
         'is_published' => true,
         'catalogue_file_path' => 'brand-pages/catalogues/birdy.pdf',
     ]);
 
-    $this->get('/barware/birdy')
+    $this->getWithExactUri('/barware/birdy/')
         ->assertOk()
-        ->assertSee('href="/storage/brand-pages/catalogues/birdy.pdf"', false)
+        ->assertSee('href="'.route('brand-catalogues.download', $brandPage).'"', false)
         ->assertSee('Download the catalog');
 });
 
@@ -257,7 +257,7 @@ it('uses the configured header theme on public pages', function (bool $headerBla
         'header_black' => $headerBlack,
     ]);
 
-    $this->get('/header-category')
+    $this->getWithExactUri('/header-category/')
         ->assertOk()
         ->assertSee('data-header-theme="'.$theme.'"', false);
 })->with([
@@ -266,10 +266,10 @@ it('uses the configured header theme on public pages', function (bool $headerBla
 ]);
 
 it('keeps the home, admin, and reserved system paths outside public page resolution', function () {
-    $this->get('/')->assertOk()->assertSee('Quality hospitality');
+    $this->get('/')->assertOk()->assertSee('premium tableware');
     $this->get('/admin')->assertRedirect('/admin/login');
-    $this->get('/catalogues')->assertOk();
-    $this->get('/contacts')->assertOk()->assertSee('Contact GRHS');
+    $this->getWithExactUri('/catalogues/')->assertOk();
+    $this->getWithExactUri('/contacts/')->assertOk()->assertSee('Contact GRHS');
     $this->get('/storage/missing-file.webp')->assertForbidden();
     $this->get('/build/missing.js')->assertNotFound();
     $this->get('/images/site/favicon.svg')->assertNotFound();
