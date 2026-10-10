@@ -28,7 +28,7 @@
             @endif
             <h1 class="max-w-5xl text-4xl leading-tight font-light tracking-[0.1em] uppercase break-words sm:text-6xl lg:text-7xl">{{ $page->h1_title ?: $brandName }}</h1>
             @if ($page->catalogue_file_path)
-                <a href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($page->catalogue_file_path) }}" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 min-w-[15rem] items-center justify-center border border-white bg-transparent px-7 text-sm font-semibold tracking-[0.12em] text-white uppercase transition-colors hover:bg-white hover:text-grhs-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Download the catalog</a>
+                <a href="{{ route('brand-catalogues.download', $page) }}" class="inline-flex min-h-12 min-w-[15rem] items-center justify-center border border-white bg-transparent px-7 text-sm font-semibold tracking-[0.12em] text-white uppercase transition-colors hover:bg-white hover:text-grhs-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Download the catalog</a>
             @endif
         </div>
     </section>
@@ -39,7 +39,7 @@
 
     @if ($page->catalogue_file_path)
         <section class="flex justify-center px-5 py-12 sm:py-20" aria-label="{{ $brandName }} catalogue">
-            <a href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($page->catalogue_file_path) }}" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 w-full max-w-[19rem] items-center justify-center bg-grhs-olive px-6 text-center text-sm font-semibold tracking-wide text-white uppercase transition-colors hover:bg-grhs-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-grhs-ink">Download the catalog</a>
+            <a href="{{ route('brand-catalogues.download', $page) }}" class="inline-flex min-h-12 w-full max-w-[19rem] items-center justify-center bg-grhs-olive px-6 text-center text-sm font-semibold tracking-wide text-white uppercase transition-colors hover:bg-grhs-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-grhs-ink">Download the catalog</a>
         </section>
     @endif
 @endsection

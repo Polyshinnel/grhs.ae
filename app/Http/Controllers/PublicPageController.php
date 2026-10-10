@@ -6,11 +6,33 @@ use App\Models\BrandPage;
 use App\Models\CategoryPage;
 use App\Support\Schema\BreadcrumbSchema;
 use Illuminate\Contracts\View\View;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PublicPageController extends Controller
 {
+    public function downloadBrandCatalogue(BrandPage $brandPage): BinaryFileResponse|StreamedResponse
+    {
+        abort_unless($brandPage->is_published, 404);
+
+        $path = $brandPage->catalogue_file_path;
+
+        abort_unless($this->isSafeStoragePath($path), 404);
+
+        /** @var FilesystemAdapter $disk */
+        $disk = Storage::disk('public');
+        abort_unless($disk->exists($path), 404);
+
+        return $disk->download($path, 'brand-catalogue-'.$brandPage->getKey().'.pdf', [
+            'Content-Type' => 'application/pdf',
+            'X-Content-Type-Options' => 'nosniff',
+        ]);
+    }
+
     public function show(string $publicPath, BreadcrumbSchema $breadcrumbSchema): View
     {
         $path = '/'.trim($publicPath, '/');
@@ -79,5 +101,13 @@ class PublicPageController extends Controller
         $encodedPath = implode('/', array_map('rawurlencode', explode('/', trim($publicPath, '/'))));
 
         return 'https://grhs.ae/'.($encodedPath === '' ? '' : $encodedPath);
+    }
+
+    private function isSafeStoragePath(?string $path): bool
+    {
+        return filled($path)
+            && ! str_starts_with($path, '/')
+            && ! str_contains($path, '\\')
+            && collect(explode('/', $path))->every(fn (string $segment) => $segment !== '' && $segment !== '.' && $segment !== '..');
     }
 }

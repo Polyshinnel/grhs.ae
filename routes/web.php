@@ -25,6 +25,9 @@ Route::post('/quick-contact', [ContactInquiryController::class, 'quick'])
 Route::get('/catalogues/{catalogue}/download', [CataloguePageController::class, 'download'])
     ->whereNumber('catalogue')
     ->name('catalogues.download');
+Route::get('/brand-catalogues/{brandPage}/download', [PublicPageController::class, 'downloadBrandCatalogue'])
+    ->whereNumber('brandPage')
+    ->name('brand-catalogues.download');
 
 Route::get('/{publicPath}', [PublicPageController::class, 'show'])
     ->where('publicPath', '(?!(?:admin|catalogues|contacts|storage|build|themes)(?:/|$)|.*\.[^/]+$).+')
