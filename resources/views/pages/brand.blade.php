@@ -25,10 +25,8 @@
         <div class="mx-auto flex w-full max-w-[90rem] flex-col items-center gap-8 px-5 pt-[90px] text-center sm:gap-10 sm:px-10">
             @if ($logoPath)
                 <img class="max-h-56 w-auto max-w-[min(88vw,48rem)] object-contain sm:max-h-72 lg:max-h-80" src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($logoPath) }}" alt="{{ $page->logo_alt ?? '' }}" fetchpriority="high">
-                <h1 class="sr-only">{{ $brandName }}</h1>
-            @else
-                <h1 class="max-w-5xl text-4xl leading-tight font-light tracking-[0.1em] uppercase break-words sm:text-6xl lg:text-7xl">{{ $brandName }}</h1>
             @endif
+            <h1 class="max-w-5xl text-4xl leading-tight font-light tracking-[0.1em] uppercase break-words sm:text-6xl lg:text-7xl">{{ $page->h1_title ?: $brandName }}</h1>
             @if ($page->catalogue_file_path)
                 <a href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($page->catalogue_file_path) }}" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 min-w-[15rem] items-center justify-center border border-white bg-transparent px-7 text-sm font-semibold tracking-[0.12em] text-white uppercase transition-colors hover:bg-white hover:text-grhs-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">Download the catalog</a>
             @endif

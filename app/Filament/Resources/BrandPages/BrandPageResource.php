@@ -44,6 +44,7 @@ class BrandPageResource extends Resource
                         Select::make('category_id')->relationship('category', 'name')->searchable()->preload()->nullable(),
                         TextInput::make('public_path')->required()->maxLength(512)->rules(fn (?Model $record): array => [new ValidPublicPath, new AvailablePublicPath($record)])->helperText('Use a full path beginning with /, such as /tableware/kenai.'),
                         TextInput::make('brand_name')->label('Display name')->maxLength(255),
+                        TextInput::make('h1_title')->label('H1 heading')->maxLength(255),
                         FileUpload::make('hero_image_path')->label('Hero image')->image()->disk('public')->directory('brand-pages')->visibility('public'),
                         TextInput::make('hero_image_alt')->label('Hero image alt text')->maxLength(255),
                         FileUpload::make('category_image_path')->label('Category image')->image()->disk('public')->directory('brand-pages')->visibility('public'),

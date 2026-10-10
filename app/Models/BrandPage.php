@@ -16,7 +16,7 @@ class BrandPage extends Model
     use RegistersPublicPath;
 
     protected $fillable = [
-        'brand_id', 'category_id', 'public_path', 'brand_name', 'seo_title', 'seo_description',
+        'brand_id', 'category_id', 'public_path', 'brand_name', 'h1_title', 'seo_title', 'seo_description',
         'og_image_path', 'logo_path', 'logo_alt', 'hero_image_path', 'hero_image_alt', 'category_image_path', 'category_image_alt', 'catalogue_file_path',
         'content_blocks', 'header_black', 'sort_order', 'is_published',
     ];

@@ -1,12 +1,24 @@
 @extends('layouts.app')
 
-@section('title', 'GRHS | Golden Ratio Hospitality Solutions')
-@section('description', 'Quality hospitality equipment and tableware by Golden Ratio Hospitality Solutions in Dubai.')
+@section('title', 'Restaurant & Hotel Tableware Supplier in Dubai, UAE | GRHS')
+@section('description', 'HoReCa supplier in Dubai: premium tableware, glassware, cutlery, barware and kitchenware for hotels and restaurants across the UAE.')
 @section('canonical', url('/'))
 
 @section('content')
     @php
-        $partners = [1, 2, ...range(4, 43)];
+        $partners = [
+            1 => 'Ossiano', 2 => 'C2', 4 => 'Kraken', 5 => 'Amaya', 6 => 'Naan',
+            7 => 'Scalini Dubai', 8 => 'Tattu', 9 => 'Cullinan', 10 => 'Addmind Hospitality',
+            11 => 'Q7 Management', 12 => 'Fundamental Hospitality', 13 => 'Gastronaut',
+            14 => 'Independent Food Company', 15 => 'FoodFund International', 16 => 'Mine & Yours',
+            17 => 'Q Food & Beverage', 18 => 'Chic Nonna', 19 => 'Nahate Dubai', 20 => 'Krasota Dubai',
+            21 => 'Ula', 22 => 'Illustrated hospitality partner', 23 => 'Amazonico', 24 => 'Sucre', 25 => 'B&B',
+            26 => 'Tresind', 27 => 'Avatara', 28 => '99 Sushi Bar', 29 => 'African Queen',
+            30 => 'Blue illustrated hospitality partner', 31 => 'February 30', 32 => 'Red monogram hospitality partner',
+            33 => 'Loona Moscow', 34 => 'Kira', 35 => 'Bar des Prés', 36 => 'Sirene', 37 => 'Five',
+            38 => 'Hilton', 39 => 'Accor', 40 => 'Atlantis The Palm', 41 => 'Marriott',
+            42 => 'Rixos Hotels', 43 => 'Rotana',
+        ];
     @endphp
 
     <section class="relative isolate flex min-h-[42rem] h-[100svh] max-h-[70rem] w-full items-center overflow-hidden bg-grhs-ink text-white md:min-h-[46rem]" aria-labelledby="home-hero-title" data-home-hero>
@@ -27,10 +39,14 @@
         <div class="absolute inset-0 -z-10 bg-linear-to-t from-black/65 via-black/15 to-black/25"></div>
 
         <div class="mx-auto flex w-full max-w-[90rem] flex-col items-center gap-8 px-6 text-center sm:px-10 md:gap-10 md:px-16 lg:px-24">
-            <h1 id="home-hero-title" class="max-w-5xl text-center text-3xl font-light tracking-[0.12em] uppercase sm:text-5xl">
-                <span class="block">Quality hospitality</span>
-                <span class="mt-1 block">equipment &amp; tableware</span>
-            </h1>
+            <div>
+                <h1 id="home-hero-title" class="max-w-5xl text-center text-3xl font-light tracking-[0.12em] uppercase sm:text-5xl">
+                    Hotel &amp; Restaurant Tableware Supplier in Dubai
+                </h1>
+                <p class="mx-auto mt-4 max-w-3xl text-center text-base leading-relaxed text-white/90 sm:text-lg">
+                    Premium tableware, glassware, cutlery and barware for hotels, restaurants and cafés across the UAE.
+                </p>
+            </div>
             <a href="/catalogues" class="inline-flex min-h-12 items-center border border-white/80 px-7 text-xs tracking-[0.2em] text-white uppercase transition-colors hover:bg-white hover:text-grhs-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:text-sm">
                 Catalogues
             </a>
@@ -40,12 +56,12 @@
     <section class="mt-8 flex h-[100px] items-center overflow-hidden bg-[#FAF8F3]" aria-label="Our partners">
         <div class="swiper h-full w-full" data-partners-slider>
             <div class="swiper-wrapper h-full items-center">
-                @foreach ($partners as $partner)
+                @foreach ($partners as $partner => $partnerName)
                     <div class="swiper-slide flex h-full items-center justify-center px-2 sm:px-3">
                         <img
                             class="max-h-full max-w-full object-contain"
                             src="{{ asset("images/home/partners/{$partner}.png") }}"
-                            alt="Partner logo {{ $partner }}"
+                            alt="{{ $partnerName }} logo"
                             width="180"
                             height="96"
                             loading="lazy"
@@ -58,25 +74,25 @@
 
     @php
         $bestsellers = [
-            ['name' => 'Kenai Ceramics', 'description' => 'The brand handcrafts minimalist porcelain and stoneware tableware from locally sourced materials for the HoReCa sector.', 'image' => '1.jpg'],
-            ['name' => 'Uccelo', 'description' => 'Our private label delivers high-quality pure white ceramics at an affordable price, tailored for the hospitality industry.', 'image' => '2.jpg'],
-            ['name' => 'Le Coq Porcelain', 'description' => 'The brand creates elegant, high-performance porcelain tableware for chefs and banqueting professionals.', 'image' => '3.jpg'],
-            ['name' => 'Gien', 'description' => 'This prestigious French maker that fuses traditional techniques with artistic inspirations from the Renaissance to classic French design.', 'image' => '4.jpg'],
+            ['name' => 'Kenai Ceramics', 'description' => 'Minimalist porcelain and stoneware, handcrafted from for the HoReCa sector.', 'image' => '1.jpg', 'alt' => 'Minimalist stoneware plates and bowls in natural tones'],
+            ['name' => 'Uccelo', 'description' => 'Our private label: durable pure white porcelain for hotels and restaurants at an affordable price.', 'image' => '2.jpg', 'alt' => 'White porcelain cup and saucer arranged on a table'],
+            ['name' => 'Le Coq Porcelain', 'description' => 'Elegant, high-performance porcelain for chefs and banqueting professionals.', 'image' => '3.jpg', 'alt' => 'White porcelain plate with a delicate floral pattern'],
+            ['name' => 'Gien', 'description' => 'A prestigious French manufacture founded in 1821, combining traditional craftsmanship with classic French decors.', 'image' => '4.jpg', 'alt' => 'Decorative porcelain plates with a blue and red pattern'],
         ];
 
         $categories = [
-            ['name' => 'Tableware', 'url' => '/tableware/', 'image' => '1.jpg'],
-            ['name' => 'Glassware', 'url' => '/glassware/', 'image' => '2.jpg'],
-            ['name' => 'Bar glass', 'url' => '/barware/', 'image' => '3.jpg'],
-            ['name' => 'Bar tools', 'url' => '/barware/', 'image' => '4.jpg'],
-            ['name' => 'Cutlery', 'url' => '/cutlery/', 'image' => '5.jpg'],
-            ['name' => 'Steak knives', 'url' => '/kitchenware/', 'image' => '6.jpg'],
-            ['name' => 'Wood', 'url' => '/wood/', 'image' => '7.jpg'],
-            ['name' => 'Kitchen accessories', 'url' => '/kitchenware/', 'image' => '8.jpg'],
-            ['name' => 'Asian concepts', 'url' => '/glassware/', 'image' => '9.jpg'],
-            ['name' => 'Buffet & hotel supplies', 'url' => '/kitchenware/', 'image' => '10.jpg'],
-            ['name' => 'Metal & copperware', 'url' => '/kitchenware/', 'image' => '11.jpg'],
-            ['name' => 'Poolware', 'url' => '/poolware/', 'image' => '12.jpg'],
+            ['name' => 'Tableware', 'url' => '/tableware/', 'image' => '1.jpg', 'alt' => 'Hand placing white porcelain bowls and plates on a table'],
+            ['name' => 'Glassware', 'url' => '/glassware/', 'image' => '2.jpg', 'alt' => 'Clear glassware displayed on a dark surface'],
+            ['name' => 'Bar glass', 'url' => '/barware/', 'image' => '3.jpg', 'alt' => 'Stemmed wine glasses arranged on a bar'],
+            ['name' => 'Bar tools', 'url' => '/barware/', 'image' => '4.jpg', 'alt' => 'Bread presented on metal stands at a buffet'],
+            ['name' => 'Cutlery', 'url' => '/cutlery/', 'image' => '5.jpg', 'alt' => 'Fork and knife beside a ceramic plate'],
+            ['name' => 'Steak knives', 'url' => '/kitchenware/', 'image' => '6.jpg', 'alt' => 'Set of steak knives with patterned handles'],
+            ['name' => 'Wood', 'url' => '/wood/', 'image' => '7.jpg', 'alt' => 'Round wooden serving bowl on a table'],
+            ['name' => 'Kitchen accessories', 'url' => '/kitchenware/', 'image' => '8.jpg', 'alt' => 'Stainless steel gastronorm pans in a buffet counter'],
+            ['name' => 'Asian concepts', 'url' => '/glassware/', 'image' => '9.jpg', 'alt' => 'Asian-inspired restaurant table setting'],
+            ['name' => 'Buffet & hotel supplies', 'url' => '/kitchenware/', 'image' => '10.jpg', 'alt' => 'Black bowls and plates arranged on a dining table'],
+            ['name' => 'Metal & copperware', 'url' => '/kitchenware/', 'image' => '11.jpg', 'alt' => 'Elegant table setting with metal serving pieces'],
+            ['name' => 'Poolware', 'url' => '/poolware/', 'image' => '12.jpg', 'alt' => 'Bread displayed on black metal serving stands'],
         ];
 
         $brands = [
@@ -102,7 +118,7 @@
                 <div class="swiper-wrapper items-stretch">
                     @foreach (array_merge($bestsellers, $bestsellers) as $slideIndex => $bestseller)
                         <article class="swiper-slide !h-auto" @if ($slideIndex >= count($bestsellers)) aria-hidden="true" @endif>
-                            <img class="aspect-[420/572] w-full object-cover" src="{{ asset("images/home/bestsellers/{$bestseller['image']}") }}" alt="{{ $bestseller['name'] }} tableware collection" width="420" height="572" loading="lazy" draggable="false">
+                            <img class="aspect-[420/572] w-full object-cover" src="{{ asset("images/home/bestsellers/{$bestseller['image']}") }}" alt="{{ $bestseller['alt'] }}" width="420" height="572" loading="lazy" draggable="false">
                             <h3 class="mt-5 text-lg font-semibold text-grhs-ink sm:mt-7 sm:text-xl">{{ $bestseller['name'] }}</h3>
                             <p class="mt-3 text-base leading-relaxed text-grhs-ink sm:mt-5 sm:text-lg">{{ $bestseller['description'] }}</p>
                         </article>
@@ -114,22 +130,20 @@
 
     <section class="space-y-14 px-5 py-12 sm:space-y-20 sm:px-8 sm:py-20 lg:space-y-28 lg:py-28" aria-labelledby="about-title">
         <div class="grid items-center gap-7 sm:gap-10 lg:grid-cols-2 lg:gap-20">
-            <img class="aspect-[4/3] w-full object-cover" src="{{ asset('images/home/about-1.jpg') }}" alt="Elegant table setting curated by GRHS" width="900" height="675" loading="lazy">
+            <img class="aspect-[4/3] w-full object-cover" src="{{ asset('images/home/about-1.jpg') }}" alt="GRHS showroom displaying tableware, glassware and serving pieces" width="900" height="675" loading="lazy">
             <div class="text-grhs-ink">
-                <h2 id="about-title" class="mb-6 text-2xl font-semibold sm:mb-8 sm:text-3xl">About us</h2>
-                <p class="text-base leading-relaxed sm:text-lg">Travel is always a journey of discovery — a search for new experiences and unexpected moments.
-                    We believe the perfect hotel should feel like a second home: a place where comfort, elegance, and effortless style come together.
-                    Our goal is simple — to create an atmosphere where every guest feels welcome, whether they are traveling for business or pleasure.</p>
-                <p class="mt-5 text-base leading-relaxed sm:mt-7 sm:text-lg">Our mission is to curate exceptional collections of crockery, glassware, cutlery, and tableware created by talented designers from around the world. Each piece embodies refined craftsmanship and the creative spirit of its maker, bringing originality and character to every table.</p>
+                <h2 id="about-title" class="mb-6 text-2xl font-semibold sm:mb-8 sm:text-3xl">About GRHS</h2>
+                <p class="text-base leading-relaxed sm:text-lg">GRHS – Golden Ratio Hospitality Supplies – is a Dubai-based supplier of premium tableware, glassware, cutlery, barware and kitchenware for the hospitality industry. We work with hotels, restaurants, cafés, bars, beach clubs and catering companies in Dubai, Abu Dhabi and across the UAE.</p>
+                <p class="mt-5 text-base leading-relaxed sm:mt-7 sm:text-lg">Our mission is to curate exceptional collections created by talented manufacturers and designers from around the world. We bring together renowned European and Japanese brands, independent handcraft studios and our own private label Uccello, so every venue can find pieces that match its concept, cuisine and budget.</p>
             </div>
         </div>
 
         <div class="grid items-center gap-7 sm:gap-10 lg:grid-cols-2 lg:gap-20">
             <div class="order-2 text-grhs-ink lg:order-1">
-                <p class="text-base leading-relaxed sm:text-lg">We offer handcrafted pieces made from natural materials, enriched with artistic designs and distinctive patterns. Each item in our collection carries its own story. By bringing these pieces to your table, you give your guests not only a beautiful dining experience, but also a memorable impression they can take home with them.</p>
-                <p class="mt-5 text-base leading-relaxed sm:mt-7 sm:text-lg">We believe that the atmosphere created by our products — in guest rooms and restaurants alike — leaves a lasting impression that brings guests back again and again.</p>
+                <p class="text-base leading-relaxed sm:text-lg">We believe that the right plate, glass and cutlery shape the way guests remember a place. Handcrafted pieces made from natural materials, with distinctive shapes and patterns, give every table its own character and turn a meal into an experience guests want to repeat.</p>
+                <p class="mt-5 text-base leading-relaxed sm:mt-7 sm:text-lg">Our team supports projects from the first idea to repeat orders: we help with product selection for new openings and refurbishments, prepare samples and presentations for owners, chefs and interior designers, and deliver to venues across all Emirates. Visit our office in Business Bay, Dubai, to see samples, or contact us for catalogues and prices.</p>
             </div>
-            <img class="order-1 aspect-[4/3] w-full object-cover lg:order-2" src="{{ asset('images/home/about-2.jpg') }}" alt="Thoughtfully selected hospitality tableware" width="900" height="675" loading="lazy">
+            <img class="order-1 aspect-[4/3] w-full object-cover lg:order-2" src="{{ asset('images/home/about-2.jpg') }}" alt="Shelves displaying porcelain plates, bowls and serving dishes" width="900" height="675" loading="lazy">
         </div>
     </section>
 
@@ -141,7 +155,7 @@
         <div class="grid grid-cols-2 gap-x-3 gap-y-4 sm:grid-cols-3 sm:gap-x-4 sm:gap-y-6 lg:grid-cols-6 lg:gap-x-5 lg:gap-y-8">
             @foreach ($categories as $category)
                 <a href="{{ $category['url'] }}" class="group relative aspect-square overflow-hidden bg-grhs-ink focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-white">
-                    <img class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none" src="{{ asset("images/home/categories/{$category['image']}") }}" alt="" width="600" height="600" loading="lazy">
+                    <img class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none" src="{{ asset("images/home/categories/{$category['image']}") }}" alt="{{ $category['alt'] }}" width="600" height="600" loading="lazy">
                     <span class="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" aria-hidden="true"></span>
                     <h3 class="absolute right-3 bottom-3 left-3 text-base leading-tight font-semibold text-white sm:right-4 sm:bottom-4 sm:left-4 sm:text-lg lg:right-6 lg:bottom-6 lg:left-6 lg:text-xl">{{ $category['name'] }}</h3>
                 </a>
