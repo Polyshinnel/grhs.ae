@@ -56,18 +56,31 @@ it('generates valid XML with static pages and published public page paths', func
     $xml = file_get_contents($this->sitemapPublicPath.'/sitemap.xml');
     expect($xml)
         ->toContain('https://grhs.ae/</loc>')
-        ->toContain('https://grhs.ae/catalogues</loc>')
-        ->toContain('https://grhs.ae/contacts</loc>')
-        ->toContain('https://grhs.ae/餐具&amp;tableware</loc>')
-        ->toContain('https://grhs.ae/餐具&amp;tableware/brand-one</loc>')
-        ->toContain('https://grhs.ae/brand-independent-page</loc>')
+        ->toContain('https://grhs.ae/catalogues/</loc>')
+        ->toContain('https://grhs.ae/contacts/</loc>')
+        ->toContain('https://grhs.ae/%E9%A4%90%E5%85%B7%26tableware/</loc>')
+        ->toContain('https://grhs.ae/%E9%A4%90%E5%85%B7%26tableware/brand-one/</loc>')
+        ->toContain('https://grhs.ae/brand-independent-page/</loc>')
         ->not->toContain('draft-category')
         ->not->toContain('draft-brand')
         ->not->toContain('missing.pdf')
-        ->not->toContain('/admin')
-        ->not->toContain('?');
+        ->not->toContain('/admin');
 
-    expect(simplexml_load_string($xml))->not->toBeFalse();
+    $document = simplexml_load_string($xml);
+    expect($document)->not->toBeFalse();
+    $document->registerXPathNamespace('sitemap', 'http://www.sitemaps.org/schemas/sitemap/0.9');
+    $locations = array_map('strval', $document->xpath('//sitemap:loc'));
+    expect($locations)->toHaveCount(6)
+        ->and($locations)->toContain('https://grhs.ae/')
+        ->and($locations)->toBe(array_values(array_unique($locations)));
+
+    foreach ($locations as $location) {
+        expect($location)->toStartWith('https://grhs.ae/')
+            ->toEndWith('/')
+            ->not->toContain('?')
+            ->not->toContain('#');
+    }
+
     expect(substr_count($xml, '<loc>'))->toBe(6);
     expect($xml)->toContain('<lastmod>2026-10-09T12:00:00+00:00</lastmod>');
 });
@@ -90,7 +103,7 @@ it('keeps deterministic output and does not rewrite an unchanged sitemap', funct
     $this->artisan('sitemap:generate')
         ->expectsOutputToContain('Result: updated')
         ->assertSuccessful();
-    expect(file_get_contents($filePath))->toContain('https://grhs.ae/new-published-page</loc>');
+    expect(file_get_contents($filePath))->toContain('https://grhs.ae/new-published-page/</loc>');
 });
 
 it('returns a failure exit code when the sitemap cannot be replaced', function () {

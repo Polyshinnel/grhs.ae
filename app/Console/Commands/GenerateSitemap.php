@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\BrandPage;
 use App\Models\CategoryPage;
+use App\Support\Seo\CanonicalUrl;
 use Carbon\CarbonInterface;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
@@ -16,9 +17,7 @@ class GenerateSitemap extends Command
 
     protected $description = 'Generate the public XML sitemap';
 
-    private const BASE_URL = 'https://grhs.ae';
-
-    public function handle(): int
+    public function handle(CanonicalUrl $canonicalUrl): int
     {
         $filePath = public_path('sitemap.xml');
 
@@ -53,9 +52,9 @@ class GenerateSitemap extends Command
                 ->filter(fn (BrandPage $page): bool => $this->matchesPublicPageRoute($page->public_path));
 
             $entries = collect([
-                ['url' => self::BASE_URL.'/', 'lastmod' => null],
-                ['url' => self::BASE_URL.'/catalogues', 'lastmod' => null],
-                ['url' => self::BASE_URL.'/contacts', 'lastmod' => null],
+                ['url' => $canonicalUrl->make('/'), 'lastmod' => null],
+                ['url' => $canonicalUrl->make('/catalogues'), 'lastmod' => null],
+                ['url' => $canonicalUrl->make('/contacts'), 'lastmod' => null],
             ]);
 
             foreach ($categoryPages as $page) {
@@ -63,11 +62,12 @@ class GenerateSitemap extends Command
                     ->flatMap(fn (BrandPage $brandPage): array => [$brandPage->updated_at, $brandPage->brand?->updated_at])
                     ->all() ?? [];
                 $dates = array_merge([$page->updated_at, $page->category?->updated_at], $relatedDates);
-                $entries->push($this->entry($page->public_path, $this->latestDate(...$dates)));
+                $entries->push($this->entry($canonicalUrl, $page->public_path, $this->latestDate(...$dates)));
             }
 
             foreach ($brandPages as $page) {
                 $entries->push($this->entry(
+                    $canonicalUrl,
                     $page->public_path,
                     $this->latestDate($page->updated_at, $page->brand?->updated_at),
                 ));
@@ -96,10 +96,10 @@ class GenerateSitemap extends Command
     }
 
     /** @return array{url: string, lastmod: ?CarbonInterface} */
-    private function entry(string $publicPath, ?CarbonInterface $lastmod): array
+    private function entry(CanonicalUrl $canonicalUrl, string $publicPath, ?CarbonInterface $lastmod): array
     {
         return [
-            'url' => self::BASE_URL.'/'.ltrim($publicPath, '/'),
+            'url' => $canonicalUrl->make($publicPath),
             'lastmod' => $lastmod,
         ];
     }
