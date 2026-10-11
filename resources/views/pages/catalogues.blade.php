@@ -86,7 +86,7 @@
                                         <span @if ($index > 3) hidden @endif data-catalogue-concept>{{ $concept->name }}</span>
                                     @endforeach
                                     @if ($catalogue->concepts->count() > 4)
-                                        <button type="button" class="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-grhs-olive" data-catalogue-concepts-expand aria-label="Show all concepts">More</button>
+                                        <button type="button" class="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-grhs-olive" data-catalogue-concepts-expand aria-label="Show all concepts">- More</button>
                                     @endif
                                 </dd>
                             </div>
