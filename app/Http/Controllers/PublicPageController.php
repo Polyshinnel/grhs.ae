@@ -10,14 +10,25 @@ use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PublicPageController extends Controller
 {
-    public function downloadBrandCatalogue(BrandPage $brandPage): BinaryFileResponse|StreamedResponse
+    public function downloadBrandCatalogue(BrandPage $brandPage): RedirectResponse
     {
-        abort_unless($brandPage->is_published, 404);
+        return redirect()->route('brand-catalogues.download', [
+            'publicPath' => ltrim($brandPage->public_path, '/'),
+        ], 301);
+    }
+
+    public function downloadBrandCatalogueByPath(string $publicPath): BinaryFileResponse|StreamedResponse
+    {
+        $brandPage = BrandPage::query()
+            ->where('public_path', '/'.trim($publicPath, '/'))
+            ->where('is_published', true)
+            ->firstOrFail();
 
         $path = $brandPage->catalogue_file_path;
 

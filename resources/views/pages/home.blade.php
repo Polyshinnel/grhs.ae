@@ -75,7 +75,7 @@
     @php
         $bestsellers = [
             ['name' => 'Kenai Ceramics', 'description' => 'Minimalist porcelain and stoneware, handcrafted from for the HoReCa sector.', 'image' => '1.webp', 'alt' => 'Minimalist stoneware plates and bowls in natural tones'],
-            ['name' => 'Uccelo', 'description' => 'Our private label: durable pure white porcelain for hotels and restaurants at an affordable price.', 'image' => '2.webp', 'alt' => 'White porcelain cup and saucer arranged on a table'],
+            ['name' => 'Ucello', 'description' => 'Our private label: durable pure white porcelain for hotels and restaurants at an affordable price.', 'image' => '2.webp', 'alt' => 'White porcelain cup and saucer arranged on a table'],
             ['name' => 'Le Coq Porcelain', 'description' => 'Elegant, high-performance porcelain for chefs and banqueting professionals.', 'image' => '3.webp', 'alt' => 'White porcelain plate with a delicate floral pattern'],
             ['name' => 'Gien', 'description' => 'A prestigious French manufacture founded in 1821, combining traditional craftsmanship with classic French decors.', 'image' => '4.webp', 'alt' => 'Decorative porcelain plates with a blue and red pattern'],
         ];
