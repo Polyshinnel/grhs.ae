@@ -19,7 +19,7 @@
         <nav id="mobile-navigation" data-mobile-menu hidden aria-label="Mobile navigation" class="absolute inset-x-0 top-[76px] z-20 max-h-[calc(100vh-92px)] overflow-y-auto rounded-sm bg-white px-7 py-6 text-grhs-ink shadow-xl nav:hidden">
             <img class="mx-auto mb-5 h-12 w-full object-contain object-center" src="{{ asset('images/site/menu-img.svg') }}" alt="">
             <ul class="grid grid-cols-2 gap-x-5 gap-y-4">
-                @foreach ([['Main', '/'], ['Catalogues', '/catalogues/'], ['Tableware', '/tableware/'], ['Glassware', '/glassware/'], ['Barware', '/barware/'], ['Kitchenware', '/kitchenware/'], ['Poolware', '/poolware/'], ['Cutlery', '/cutlery/'], ['Wood', '/wood/'], ['Coffee Shop', '/coffee-shop/'], ['Contacts', '/contacts/']] as [$label, $href])
+                @foreach ([['Main', '/'], ['Catalogues', '/catalogues/'], ['Tableware', '/tableware/'], ['Glassware', '/glassware/'], ['Barware', '/barware/'], ['Kitchenware', '/kitchenware/'], ['Poolware', '/poolware/'], ['Cutlery', '/cutlery/'], ['Wood', '/wood/'], ['Coffee Shop', '/coffee-shop/'], ['Uccello', '/uccello/'], ['Contacts', '/contacts/']] as [$label, $href])
                     <li><a class="inline-flex min-h-10 items-center text-sm uppercase tracking-wide hover:text-grhs-olive focus-visible:outline-2 focus-visible:outline-grhs-olive" href="{{ $href }}">{{ $label }}</a></li>
                 @endforeach
             </ul>

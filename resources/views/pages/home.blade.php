@@ -75,7 +75,7 @@
     @php
         $bestsellers = [
             ['name' => 'Kenai Ceramics', 'description' => 'Minimalist porcelain and stoneware, handcrafted from for the HoReCa sector.', 'image' => '1.webp', 'alt' => 'Minimalist stoneware plates and bowls in natural tones'],
-            ['name' => 'Ucello', 'description' => 'Our private label: durable pure white porcelain for hotels and restaurants at an affordable price.', 'image' => '2.webp', 'alt' => 'White porcelain cup and saucer arranged on a table'],
+            ['name' => 'Uccello', 'description' => 'Our private label: durable pure white porcelain for hotels and restaurants at an affordable price.', 'image' => '2.webp', 'alt' => 'White porcelain cup and saucer arranged on a table'],
             ['name' => 'Le Coq Porcelain', 'description' => 'Elegant, high-performance porcelain for chefs and banqueting professionals.', 'image' => '3.webp', 'alt' => 'White porcelain plate with a delicate floral pattern'],
             ['name' => 'Gien', 'description' => 'A prestigious French manufacture founded in 1821, combining traditional craftsmanship with classic French decors.', 'image' => '4.webp', 'alt' => 'Decorative porcelain plates with a blue and red pattern'],
         ];
@@ -89,7 +89,6 @@
             ['name' => 'Steak knives', 'url' => '/kitchenware/', 'image' => '6.webp', 'alt' => 'Set of steak knives with patterned handles'],
             ['name' => 'Wood', 'url' => '/wood/', 'image' => '7.webp', 'alt' => 'Round wooden serving bowl on a table'],
             ['name' => 'Kitchen accessories', 'url' => '/kitchenware/', 'image' => '8.webp', 'alt' => 'Stainless steel gastronorm pans in a buffet counter'],
-            ['name' => 'Asian concepts', 'url' => '/glassware/', 'image' => '9.webp', 'alt' => 'Asian-inspired restaurant table setting'],
             ['name' => 'Buffet & hotel supplies', 'url' => '/kitchenware/', 'image' => '10.webp', 'alt' => 'Black bowls and plates arranged on a dining table'],
             ['name' => 'Metal & copperware', 'url' => '/kitchenware/', 'image' => '11.webp', 'alt' => 'Elegant table setting with metal serving pieces'],
             ['name' => 'Poolware', 'url' => '/poolware/', 'image' => '12.webp', 'alt' => 'Bread displayed on black metal serving stands'],
