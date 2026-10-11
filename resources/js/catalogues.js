@@ -9,6 +9,17 @@ if (library) {
     const count = library.querySelector('[data-catalogue-count]');
     const emptyState = library.querySelector('[data-catalogue-empty]');
 
+    library.querySelectorAll('[data-catalogue-concepts-expand]').forEach((button) => {
+        button.addEventListener('click', () => {
+            const concepts = button.closest('[data-catalogue-concepts]');
+
+            concepts.querySelectorAll('[hidden]').forEach((item) => {
+                item.hidden = false;
+            });
+            button.remove();
+        });
+    });
+
     function updateCatalogues() {
         const selectedBrand = filters.brand.value;
         const selectedCategory = filters.category.value;

@@ -78,7 +78,18 @@
                     <dl class="mt-3 grid min-w-0 gap-1 text-xs leading-relaxed text-grhs-ink/70">
                         <div class="min-w-0"><dt class="inline font-semibold">Category: </dt><dd class="inline break-words">{{ $catalogue->category->name }}</dd></div>
                         @if ($catalogue->concepts->isNotEmpty())
-                            <div class="min-w-0"><dt class="inline font-semibold">Concept: </dt><dd class="inline break-words">{{ $catalogue->concepts->pluck('name')->join(', ') }}</dd></div>
+                            <div class="min-w-0" data-catalogue-concepts>
+                                <dt class="inline font-semibold">Concept: </dt>
+                                <dd class="inline break-words">
+                                    @foreach ($catalogue->concepts as $index => $concept)
+                                        @if ($index > 0)<span data-concept-separator @if ($index > 3) hidden @endif>, </span>@endif
+                                        <span @if ($index > 3) hidden @endif data-catalogue-concept>{{ $concept->name }}</span>
+                                    @endforeach
+                                    @if ($catalogue->concepts->count() > 4)
+                                        <button type="button" class="font-semibold underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-grhs-olive" data-catalogue-concepts-expand aria-label="Show all concepts">...</button>
+                                    @endif
+                                </dd>
+                            </div>
                         @endif
                     </dl>
 
