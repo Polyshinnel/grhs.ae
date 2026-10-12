@@ -7,6 +7,7 @@ use Database\Factories\BrandPageFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class BrandPage extends Model
 {
@@ -17,7 +18,7 @@ class BrandPage extends Model
 
     protected $fillable = [
         'brand_id', 'category_id', 'public_path', 'brand_name', 'h1_title', 'seo_title', 'seo_description',
-        'og_image_path', 'logo_path', 'logo_alt', 'hero_image_path', 'hero_image_alt', 'category_image_path', 'category_image_alt', 'catalogue_file_path',
+        'og_image_path', 'logo_path', 'logo_alt', 'hero_image_path', 'hero_image_alt', 'category_image_path', 'category_image_alt',
         'content_blocks', 'header_black', 'sort_order', 'is_published',
     ];
 
@@ -38,6 +39,11 @@ class BrandPage extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function catalogues(): HasMany
+    {
+        return $this->hasMany(BrandPageCatalogue::class)->orderBy('sort_order')->orderBy('id');
     }
 
     public function getDisplayNameAttribute(): string

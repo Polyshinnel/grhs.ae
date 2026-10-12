@@ -33,6 +33,9 @@ Route::get('/catalogues/{catalogue}/download', [CataloguePageController::class, 
 Route::get('/brand-catalogues/{brandPage}/download', [PublicPageController::class, 'downloadBrandCatalogue'])
     ->whereNumber('brandPage')
     ->name('brand-catalogues.legacy-download');
+Route::get('/brand-catalogues/{publicPath}/{catalogue}/download', [PublicPageController::class, 'downloadBrandCatalogueByPath'])
+    ->where(['publicPath' => '.+', 'catalogue' => '[0-9]+'])
+    ->name('brand-catalogues.catalogue-download');
 Route::get('/brand-catalogues/{publicPath}/download', [PublicPageController::class, 'downloadBrandCatalogueByPath'])
     ->where('publicPath', '.+')
     ->name('brand-catalogues.download');

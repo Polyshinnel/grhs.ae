@@ -23,14 +23,17 @@ class PublicPageController extends Controller
         ], 301);
     }
 
-    public function downloadBrandCatalogueByPath(string $publicPath): BinaryFileResponse|StreamedResponse
+    public function downloadBrandCatalogueByPath(string $publicPath, ?int $catalogue = null): BinaryFileResponse|StreamedResponse
     {
         $brandPage = BrandPage::query()
             ->where('public_path', '/'.trim($publicPath, '/'))
             ->where('is_published', true)
             ->firstOrFail();
 
-        $path = $brandPage->catalogue_file_path;
+        $catalogueRecord = $catalogue === null
+            ? $brandPage->catalogues()->firstOrFail()
+            : $brandPage->catalogues()->findOrFail($catalogue);
+        $path = $catalogueRecord->catalogue_file_path;
 
         abort_unless($this->isSafeStoragePath($path), 404);
 
@@ -38,7 +41,7 @@ class PublicPageController extends Controller
         $disk = Storage::disk('public');
         abort_unless($disk->exists($path), 404);
 
-        return $disk->download($path, 'brand-catalogue-'.$brandPage->getKey().'.pdf', [
+        return $disk->download($path, 'brand-catalogue-'.$catalogueRecord->getKey().'.pdf', [
             'Content-Type' => 'application/pdf',
             'X-Content-Type-Options' => 'nosniff',
         ]);
@@ -80,7 +83,7 @@ class PublicPageController extends Controller
 
         if ($registeredPath->page_type === BrandPage::class) {
             $page = BrandPage::query()
-                ->with(['brand', 'category.categoryPage' => fn ($query) => $query->where('is_published', true)])
+                ->with(['brand', 'catalogues', 'category.categoryPage' => fn ($query) => $query->where('is_published', true)])
                 ->whereKey($registeredPath->page_id)
                 ->where('public_path', $path)
                 ->where('is_published', true)

@@ -5,9 +5,9 @@
         </a>
 
         <nav class="hidden nav:block" aria-label="Main navigation">
-            <ul class="flex items-center gap-6 xl:gap-10">
+            <ul class="flex items-center gap-6 2xl:gap-10">
                 @foreach ([['Main', '/'], ['Tableware', '/tableware/'], ['Glassware', '/glassware/'], ['Barware', '/barware/'], ['Kitchenware', '/kitchenware/'], ['Poolware', '/poolware/'], ['Cutlery', '/cutlery/'], ['Wood', '/wood/'], ['Coffee Shop', '/coffee-shop/'], ['Contacts', '/contacts/']] as [$label, $href])
-                    <li><a class="relative text-[13px] font-normal uppercase tracking-wide transition-colors {{ $headerBlack ? 'hover:text-black/60' : 'hover:text-white/70' }} xl:text-[18px]" href="{{ $href }}">{{ $label }}</a></li>
+                    <li><a class="relative text-[13px] font-normal uppercase tracking-wide transition-colors {{ $headerBlack ? 'hover:text-black/60' : 'hover:text-white/70' }} 2xl:text-[18px]" href="{{ $href }}">{{ $label }}</a></li>
                 @endforeach
             </ul>
         </nav>

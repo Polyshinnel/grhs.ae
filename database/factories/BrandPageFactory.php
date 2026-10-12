@@ -30,7 +30,6 @@ class BrandPageFactory extends Factory
             'logo_path' => null,
             'hero_image_path' => null,
             'category_image_path' => null,
-            'catalogue_file_path' => null,
             'content_blocks' => null,
             'sort_order' => 0,
         ];

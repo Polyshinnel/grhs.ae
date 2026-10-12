@@ -94,22 +94,6 @@ body {
     display: none !important;
 }
 
-[data-floating-panel] {
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(0.5rem);
-    visibility: hidden;
-    transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms;
-}
-
-[data-floating-panel][data-open="true"] {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-    visibility: visible;
-    transition-delay: 0s;
-}
-
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

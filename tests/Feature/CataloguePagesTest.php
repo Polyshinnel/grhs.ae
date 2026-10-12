@@ -189,7 +189,6 @@ it('defaults pages to unpublished and stores nullable SEO and image fields', fun
         'logo_path' => null,
         'hero_image_path' => null,
         'category_image_path' => null,
-        'catalogue_file_path' => null,
     ]);
 
     expect($categoryPage->fresh()->is_published)->toBeFalse()
@@ -197,5 +196,5 @@ it('defaults pages to unpublished and stores nullable SEO and image fields', fun
         ->and($categoryPage->fresh()->hero_image_path)->toBeNull()
         ->and($brandPage->fresh()->is_published)->toBeFalse()
         ->and($brandPage->fresh()->seo_description)->toBeNull()
-        ->and($brandPage->fresh()->catalogue_file_path)->toBeNull();
+        ->and($brandPage->fresh()->catalogues)->toBeEmpty();
 });

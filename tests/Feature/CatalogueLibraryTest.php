@@ -180,8 +180,9 @@ it('exposes one authenticated settings page and builds the catalogue forms', fun
         ->and(CataloguePageSettings::query()->count())->toBeLessThanOrEqual(1);
 });
 
-it('keeps catalogue pdf changes independent from brand page pdf files', function () {
-    $brandPage = BrandPage::factory()->create(['catalogue_file_path' => 'brand-pages/original.pdf']);
+it('keeps brand page catalogue records independent from library catalogue pdf updates', function () {
+    $brandPage = BrandPage::factory()->create();
+    $brandCatalogue = $brandPage->catalogues()->create(['catalogue_file_path' => 'brand-pages/original.pdf']);
     $catalogue = Catalogue::factory()->create([
         'brand_id' => $brandPage->brand_id,
         'original_pdf_path' => 'catalogues/original/first.pdf',
@@ -190,5 +191,6 @@ it('keeps catalogue pdf changes independent from brand page pdf files', function
     $catalogue->update(['original_pdf_path' => 'catalogues/original/second.pdf']);
 
     expect($catalogue->fresh()->original_pdf_path)->toBe('catalogues/original/second.pdf')
-        ->and($brandPage->fresh()->catalogue_file_path)->toBe('brand-pages/original.pdf');
+        ->and($brandPage->fresh()->catalogues->first()->catalogue_file_path)->toBe('brand-pages/original.pdf')
+        ->and($brandCatalogue->exists)->toBeTrue();
 });

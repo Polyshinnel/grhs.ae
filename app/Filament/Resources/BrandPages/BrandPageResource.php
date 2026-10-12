@@ -51,11 +51,24 @@ class BrandPageResource extends Resource
                         TextInput::make('category_image_alt')->label('Category image alt text')->maxLength(255),
                         FileUpload::make('logo_path')->label('Brand logo')->image()->disk('public')->directory('brand-pages')->visibility('public'),
                         TextInput::make('logo_alt')->label('Brand logo alt text')->maxLength(255),
-                        FileUpload::make('catalogue_file_path')->label('Catalogue PDF')->acceptedFileTypes(['application/pdf'])->disk('public')->directory('brand-pages/catalogues')->visibility('public'),
                         Toggle::make('header_black')->default(false),
                         Toggle::make('is_published')->label('Published')->default(false),
                         TextInput::make('sort_order')->numeric()->integer()->default(0)->required(),
                     ])->columns(2),
+                Section::make('Catalogues')
+                    ->schema([
+                        Repeater::make('catalogues')
+                            ->relationship()
+                            ->schema([
+                                FileUpload::make('catalogue_file_path')->label('Catalogue PDF')->acceptedFileTypes(['application/pdf'])->disk('public')->directory('brand-pages/catalogues')->visibility('public')->required(),
+                                TextInput::make('button_label')->label('Download button text')->maxLength(255),
+                            ])
+                            ->orderColumn('sort_order')
+                            ->reorderable()
+                            ->itemLabel(fn (array $state): ?string => $state['button_label'] ?? 'Catalogue')
+                            ->addActionLabel('Add catalogue')
+                            ->columnSpanFull(),
+                    ]),
                 Section::make('Content blocks')
                     ->schema([
                         Repeater::make('content_blocks')

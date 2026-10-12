@@ -5,6 +5,7 @@ use App\Models\BrandPage;
 use App\Models\Category;
 use App\Models\CategoryPage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
 
 uses(RefreshDatabase::class);
 
@@ -228,7 +229,6 @@ it('omits the catalogue section when no PDF is set', function () {
     BrandPage::factory()->for($brand)->create([
         'public_path' => '/barware/birdy',
         'is_published' => true,
-        'catalogue_file_path' => null,
     ]);
 
     $this->getWithExactUri('/barware/birdy/')
@@ -241,13 +241,67 @@ it('links to the uploaded PDF through the public filesystem disk', function () {
     $brandPage = BrandPage::factory()->for($brand)->create([
         'public_path' => '/barware/birdy',
         'is_published' => true,
-        'catalogue_file_path' => 'brand-pages/catalogues/birdy.pdf',
     ]);
+    $brandPage->catalogues()->create(['catalogue_file_path' => 'brand-pages/catalogues/birdy.pdf']);
 
     $this->getWithExactUri('/barware/birdy/')
         ->assertOk()
-        ->assertSee('href="'.route('brand-catalogues.download', $brandPage).'"', false)
+        ->assertSee('href="'.route('brand-catalogues.download', ['publicPath' => 'barware/birdy']).'"', false)
         ->assertSee('Download the catalog');
+});
+
+it('offers labelled catalogue links in a modal when a brand has multiple catalogues', function () {
+    $brandPage = BrandPage::factory()->create([
+        'public_path' => '/tableware/kenai',
+        'is_published' => true,
+    ]);
+    $firstCatalogue = $brandPage->catalogues()->create([
+        'catalogue_file_path' => 'brand-pages/catalogues/kenai-tableware.pdf',
+        'button_label' => 'Tableware collection',
+    ]);
+    $secondCatalogue = $brandPage->catalogues()->create([
+        'catalogue_file_path' => 'brand-pages/catalogues/kenai-hospitality.pdf',
+        'button_label' => null,
+    ]);
+
+    $this->getWithExactUri('/tableware/kenai/')
+        ->assertOk()
+        ->assertSee('Download the catalogs')
+        ->assertSee('id="brand-catalogues-dialog"', false)
+        ->assertSee('Tableware collection')
+        ->assertSee('href="'.route('brand-catalogues.catalogue-download', ['publicPath' => 'tableware/kenai', 'catalogue' => $firstCatalogue->id]).'"', false)
+        ->assertSee('href="'.route('brand-catalogues.catalogue-download', ['publicPath' => 'tableware/kenai', 'catalogue' => $secondCatalogue->id]).'"', false)
+        ->assertSee('Download the catalog');
+});
+
+it('downloads only a catalogue belonging to a published brand page', function () {
+    Storage::fake('public');
+    Storage::disk('public')->put('brand-pages/catalogues/kenai.pdf', '%PDF-1.4');
+    $brandPage = BrandPage::factory()->create([
+        'public_path' => '/tableware/kenai',
+        'is_published' => true,
+    ]);
+    $catalogue = $brandPage->catalogues()->create(['catalogue_file_path' => 'brand-pages/catalogues/kenai.pdf']);
+    $otherBrandPage = BrandPage::factory()->create([
+        'public_path' => '/tableware/other',
+        'is_published' => true,
+    ]);
+    $otherCatalogue = $otherBrandPage->catalogues()->create(['catalogue_file_path' => 'brand-pages/catalogues/other.pdf']);
+
+    $this->get(route('brand-catalogues.catalogue-download', ['publicPath' => 'tableware/kenai', 'catalogue' => $catalogue->id]))
+        ->assertOk()
+        ->assertHeader('Content-Type', 'application/pdf');
+
+    $this->get(route('brand-catalogues.download', ['publicPath' => 'tableware/kenai']))
+        ->assertOk()
+        ->assertHeader('Content-Type', 'application/pdf');
+
+    $this->get(route('brand-catalogues.catalogue-download', ['publicPath' => 'tableware/kenai', 'catalogue' => $otherCatalogue->id]))
+        ->assertNotFound();
+
+    $otherBrandPage->update(['is_published' => false]);
+    $this->get(route('brand-catalogues.catalogue-download', ['publicPath' => 'tableware/other', 'catalogue' => $otherCatalogue->id]))
+        ->assertNotFound();
 });
 
 it('uses the configured header theme on public pages', function (bool $headerBlack, string $theme) {
