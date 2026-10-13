@@ -10,6 +10,6 @@
         <img class="h-[30px] w-[30px]" src="{{ asset('images/site/whatsapp-icon.webp') }}" alt="">
     </a>
     <a href="/catalogues/" aria-label="Browse catalogues" class="flex h-[60px] w-[60px] items-center justify-center rounded-full border border-black/20 bg-white shadow-md transition-shadow hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-grhs-olive">
-        <img class="h-11 w-11" src="{{ asset('images/site/catalogues.svg') }}" alt="">
+        <img class="h-11 w-11" src="{{ asset('images/site/catalogues-new.svg') }}" alt="">
     </a>
 </div>
