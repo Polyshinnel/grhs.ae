@@ -132,7 +132,7 @@
             <img class="aspect-[4/3] w-full object-cover" src="{{ asset('images/home/about-1.webp') }}" alt="GRHS showroom displaying tableware, glassware and serving pieces" width="900" height="675" loading="lazy">
             <div class="text-grhs-ink">
                 <h2 id="about-title" class="mb-6 text-2xl font-semibold sm:mb-8 sm:text-3xl">About GRHS</h2>
-                <p class="text-base leading-relaxed sm:text-lg">GRHS – Golden Ratio Hospitality Supplies – is a Dubai-based supplier of premium tableware, glassware, cutlery, barware and kitchenware for the hospitality industry. We work with hotels, restaurants, cafés, bars, beach clubs and catering companies in Dubai, Abu Dhabi and across the UAE.</p>
+                <p class="text-base leading-relaxed sm:text-lg">Golden Ratio Hospitality Supplies Trading LLC is a Dubai-based supplier of premium tableware, glassware, cutlery, barware and kitchenware for the hospitality industry. We work with hotels, restaurants, cafés, bars, beach clubs and catering companies in Dubai, Abu Dhabi and across the UAE.</p>
                 <p class="mt-5 text-base leading-relaxed sm:mt-7 sm:text-lg">Our mission is to curate exceptional collections created by talented manufacturers and designers from around the world. We bring together renowned European and Japanese brands, independent handcraft studios and our own private label Uccello, so every venue can find pieces that match its concept, cuisine and budget.</p>
             </div>
         </div>

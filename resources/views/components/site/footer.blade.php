@@ -46,7 +46,7 @@
                 @endforeach
             </address>
             <a class="self-start nav:self-center" href="/" aria-label="GRHS home">
-                <img class="w-[140px]" src="{{ asset('images/site/logo.svg') }}" alt="Golden Ratio Hospitality Solutions">
+                <img class="w-[140px]" src="{{ asset('images/site/logo.svg') }}" alt="Golden Ratio Hospitality Supplies Trading LLC">
             </a>
         </div>
 

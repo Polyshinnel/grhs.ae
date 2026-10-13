@@ -28,7 +28,7 @@ it('renders one valid organization schema on the home page and contacts page', f
         ->and($schema['@id'])->toBe('https://grhs.ae/#organization')
         ->and($schema['logo'])->toBe('https://grhs.ae/images/site/logo.png')
         ->and($schema['name'])->toBe('GRHS')
-        ->and($schema['legalName'])->toBe('GRHS Trading LLC');
+        ->and($schema['legalName'])->toBe('Golden Ratio Hospitality Supplies Trading LLC');
 })->with([
     'home page' => ['/'],
     'contacts page' => ['/contacts'],

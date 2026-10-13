@@ -11,7 +11,7 @@
         <img class="absolute inset-0 -z-20 h-full w-full object-cover" src="{{ asset('images/home/contacts-hero.webp') }}" alt="" fetchpriority="high">
         <div class="mx-auto flex h-full w-full items-center justify-center px-5 sm:px-10 lg:px-16">
             <div class="w-fit max-w-2xl bg-grhs-paper/80 px-6 py-7 text-center backdrop-blur-sm sm:px-10 sm:py-10">
-                <p class="text-sm tracking-[0.24em] text-grhs-ink/75 uppercase sm:text-base">Golden Ratio Hospitality Supplies</p>
+                <p class="text-sm tracking-[0.24em] text-grhs-ink/75 uppercase sm:text-base">Golden Ratio Hospitality Supplies Trading LLC</p>
                 <h1 id="contacts-title" class="mt-4 text-4xl leading-tight font-light tracking-[0.1em] uppercase sm:text-6xl lg:text-7xl">Contact GRHS</h1>
             </div>
         </div>
@@ -23,7 +23,7 @@
                 <p class="text-sm tracking-[0.2em] text-grhs-olive uppercase">Based in Dubai</p>
                 <h2 id="visit-office-title" class="mt-3 text-3xl font-semibold tracking-wide text-grhs-ink sm:text-4xl">Visit Our Office in Business Bay, Dubai</h2>
                 <p class="mt-6 text-lg leading-8 text-grhs-ink/75 sm:text-xl sm:leading-9">
-                    GRHS – Golden Ratio Hospitality Supplies – is a Dubai-based supplier of tableware, glassware, cutlery, barware and kitchenware for hotels, restaurants and cafes across the UAE. Visit our office in Ontario Tower, Business Bay, to see samples from our collections and discuss your project with our team.
+                    Golden Ratio Hospitality Supplies Trading LLC is a Dubai-based supplier of tableware, glassware, cutlery, barware and kitchenware for hotels, restaurants and cafes across the UAE. Visit our office in Ontario Tower, Business Bay, to see samples from our collections and discuss your project with our team.
                 </p>
             </section>
 

@@ -14,23 +14,26 @@
     @endphp
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Golden Ratio Hospitality Solutions">
-    <title>@yield('title', 'GRHS | Golden Ratio Hospitality Solutions')</title>
-    <meta name="description" content="@yield('description', 'Golden Ratio Hospitality Solutions — hospitality equipment and tableware in Dubai.')">
+    <meta name="author" content="Golden Ratio Hospitality Supplies Trading LLC">
+    <title>@yield('title', 'GRHS | Golden Ratio Hospitality Supplies Trading LLC')</title>
+    <meta name="description" content="@yield('description', 'Golden Ratio Hospitality Supplies Trading LLC — hospitality equipment and tableware in Dubai.')">
     <link rel="canonical" href="{{ $canonicalUrl }}">
-    <meta property="og:title" content="@yield('title', 'GRHS | Golden Ratio Hospitality Solutions')">
-    <meta property="og:description" content="@yield('description', 'Golden Ratio Hospitality Solutions — hospitality equipment and tableware in Dubai.')">
+    <meta property="og:title" content="@yield('title', 'GRHS | Golden Ratio Hospitality Supplies Trading LLC')">
+    <meta property="og:description" content="@yield('description', 'Golden Ratio Hospitality Supplies Trading LLC — hospitality equipment and tableware in Dubai.')">
     <meta property="og:url" content="{{ $canonicalUrl }}">
-    @hasSection('og_image')
-        <meta property="og:image" content="@yield('og_image')">
-    @endif
+    <meta property="og:image" content="@yield('og_image', asset('og-image-1200x628.jpg'))">
     @isset($organizationSchema)
         <script type="application/ld+json">{!! json_encode($organizationSchema, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_INVALID_UTF8_SUBSTITUTE) !!}</script>
     @endisset
     @isset($breadcrumbSchema)
         <script type="application/ld+json">{!! json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_INVALID_UTF8_SUBSTITUTE) !!}</script>
     @endisset
-    <link rel="icon" href="{{ asset('images/site/favicon.svg') }}" type="image/svg+xml">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
+    <link rel="icon" href="{{ asset('favicon-48.png') }}" type="image/png" sizes="48x48">
+    <link rel="icon" href="{{ asset('favicon-96.png') }}" type="image/png" sizes="96x96">
+    <link rel="icon" href="{{ asset('favicon-192.png') }}" type="image/png" sizes="192x192">
+    <link rel="icon" href="{{ asset('favicon-512.png') }}" type="image/png" sizes="512x512">
+    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-grhs-paper text-grhs-ink antialiased">

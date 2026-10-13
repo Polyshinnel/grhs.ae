@@ -18,7 +18,7 @@ class OrganizationSchema
             '@type' => 'WholesaleStore',
             '@id' => self::ORGANIZATION_ID,
             'name' => 'GRHS',
-            'legalName' => 'GRHS Trading LLC',
+            'legalName' => 'Golden Ratio Hospitality Supplies Trading LLC',
             'url' => 'https://grhs.ae/',
             'logo' => 'https://grhs.ae/images/site/logo.png',
             'description' => 'HoReCa supplier of tableware, glassware, cutlery, barware and kitchenware for hotels and restaurants in the UAE.',

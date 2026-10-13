@@ -2,7 +2,7 @@
 
 @php
     $seoTitle = $settings?->seo_title ?: 'Product catalogues | GRHS';
-    $seoDescription = $settings?->seo_description ?: 'Browse product catalogues from the renowned brands represented by Golden Ratio Hospitality Solutions.';
+    $seoDescription = $settings?->seo_description ?: 'Browse product catalogues from the renowned brands represented by Golden Ratio Hospitality Supplies Trading LLC.';
     $ogImage = $settings?->og_image_path
         ? url(\Illuminate\Support\Facades\Storage::disk('public')->url($settings->og_image_path))
         : asset('images/home/main-poster.jpg');

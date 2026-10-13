@@ -28,7 +28,7 @@ it('renders the contacts page with the specified headings and SEO metadata', fun
         ->assertSee('data-header-theme="black"', false)
         ->assertSee('class="relative isolate flex h-svh min-h-svh w-full items-center overflow-hidden bg-grhs-paper text-grhs-ink"', false)
         ->assertSee('src="'.asset('images/home/contacts-hero.webp').'"', false)
-        ->assertSee('GRHS – Golden Ratio Hospitality Supplies – is a Dubai-based supplier of tableware, glassware, cutlery, barware and kitchenware for hotels, restaurants and cafes across the UAE. Visit our office in Ontario Tower, Business Bay, to see samples from our collections and discuss your project with our team.')
+        ->assertSee('Golden Ratio Hospitality Supplies Trading LLC is a Dubai-based supplier of tableware, glassware, cutlery, barware and kitchenware for hotels, restaurants and cafes across the UAE. Visit our office in Ontario Tower, Business Bay, to see samples from our collections and discuss your project with our team.')
         ->assertSee('Contact us to request brand catalogues and prices, order samples, get a proposal for a new opening or refurbishment, or place a repeat order. We work with owners, F&amp;B managers, chefs, purchasing teams and interior designers, and deliver to venues in Dubai, Abu Dhabi and all other Emirates.', false)
         ->assertSee('<title>Contact GRHS – HoReCa Supplier in Business Bay, Dubai</title>', false)
         ->assertSee('<meta name="description" content="GRHS, Office 2203, Ontario Tower, Business Bay, Dubai. Call +971 58 533 8524, WhatsApp or email sales@grhs.ae for catalogues and prices.">', false)
