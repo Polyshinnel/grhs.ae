@@ -8,7 +8,7 @@
 
 @section('content')
     <section class="relative isolate flex h-svh min-h-svh w-full items-center overflow-hidden bg-grhs-paper text-grhs-ink" aria-labelledby="contacts-title">
-        <img class="absolute inset-0 -z-20 h-full w-full object-cover" src="{{ asset('images/home/contacts-hero.webp') }}" alt="" fetchpriority="high">
+        <img class="absolute inset-0 -z-20 h-full w-full object-cover" src="{{ asset('images/home/contacts-hero.webp') }}" alt="GRHS showroom displaying porcelain plates, bowls and tableware">
         <div class="mx-auto flex h-full w-full items-center justify-center px-5 sm:px-10 lg:px-16">
             <div class="w-fit max-w-2xl bg-grhs-paper/80 px-6 py-7 text-center backdrop-blur-sm sm:px-10 sm:py-10">
                 <p class="text-sm tracking-[0.24em] text-grhs-ink/75 uppercase sm:text-base">Golden Ratio Hospitality Supplies Trading LLC</p>
@@ -79,21 +79,21 @@
             <address class="grid gap-5 not-italic sm:grid-cols-2">
                 @if (filled($settings?->address))
                     <div class="flex min-w-0 items-start gap-5 border-b border-black/10 pb-6">
-                        <img class="mt-1 h-6 w-6 shrink-0 object-contain" src="{{ asset('images/site/geo.svg') }}" alt="">
+                        <img class="mt-1 h-6 w-6 shrink-0 object-contain" src="{{ asset('images/site/geo.svg') }}" alt="Office location icon">
                         <p class="break-words text-lg leading-8 text-grhs-ink sm:text-xl">{{ $settings->address }}</p>
                     </div>
                 @endif
 
                 @if (filled($settings?->phone))
                     <div class="flex min-w-0 items-start gap-5 border-b border-black/10 pb-6">
-                        <img class="mt-1 h-6 w-6 shrink-0 object-contain" src="{{ asset('images/site/phone.svg') }}" alt="">
+                        <img class="mt-1 h-6 w-6 shrink-0 object-contain" src="{{ asset('images/site/phone.svg') }}" alt="Phone icon">
                         <a class="break-words text-lg leading-8 text-grhs-ink underline-offset-4 hover:text-grhs-olive hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-grhs-olive sm:text-xl" href="tel:{{ preg_replace('/[^+0-9]/', '', $settings->phone) }}">{{ $settings->phone }}</a>
                     </div>
                 @endif
 
                 @if (filled($settings?->email))
                     <div class="flex min-w-0 items-start gap-5 border-b border-black/10 pb-6">
-                        <img class="mt-1 h-6 w-6 shrink-0 object-contain" src="{{ asset('images/site/mail.svg') }}" alt="">
+                        <img class="mt-1 h-6 w-6 shrink-0 object-contain" src="{{ asset('images/site/mail.svg') }}" alt="Email icon">
                         <a class="break-all text-lg leading-8 text-grhs-ink underline-offset-4 hover:text-grhs-olive hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-grhs-olive sm:text-xl" href="mailto:{{ $settings->email }}">{{ $settings->email }}</a>
                     </div>
                 @endif
@@ -102,9 +102,9 @@
                     @if (filled($socialLink['platform'] ?? null) && filled($socialLink['text'] ?? null) && filled($socialLink['url'] ?? null))
                         <div class="flex min-w-0 items-start gap-5 border-b border-black/10 pb-6">
                             @if ($socialLink['platform'] === 'instagram')
-                                <img class="mt-1 h-6 w-6 shrink-0 object-contain" src="{{ asset('images/site/insta.svg') }}" alt="">
+                                <img class="mt-1 h-6 w-6 shrink-0 object-contain" src="{{ asset('images/site/insta.svg') }}" alt="Instagram icon">
                             @elseif ($socialLink['platform'] === 'whatsapp')
-                                <img class="mt-1 h-6 w-6 shrink-0 object-contain" src="{{ asset('images/site/whatsapp.svg') }}" alt="">
+                                <img class="mt-1 h-6 w-6 shrink-0 object-contain" src="{{ asset('images/site/whatsapp.svg') }}" alt="WhatsApp icon">
                             @else
                                 <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-grhs-ink/50 text-xs font-bold leading-none text-grhs-ink" aria-hidden="true">
                                     @switch($socialLink['platform'])

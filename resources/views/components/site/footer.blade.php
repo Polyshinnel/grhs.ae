@@ -4,19 +4,19 @@
             <address class="flex flex-col gap-4 not-italic text-sm leading-relaxed sm:grid sm:grid-cols-2 sm:gap-x-8">
                 @if (filled($contactSettings?->address))
                     <div class="flex items-center gap-3">
-                        <img class="h-[18px] w-[18px] shrink-0 object-contain" src="{{ asset('images/site/geo.svg') }}" alt="">
+                        <img class="h-[18px] w-[18px] shrink-0 object-contain" src="{{ asset('images/site/geo.svg') }}" alt="Office location icon">
                         <span>{{ $contactSettings->address }}</span>
                     </div>
                 @endif
                 @if (filled($contactSettings?->phone))
                     <div class="flex items-center gap-3">
-                        <img class="h-[18px] w-[18px] object-contain" src="{{ asset('images/site/phone.svg') }}" alt="">
+                        <img class="h-[18px] w-[18px] object-contain" src="{{ asset('images/site/phone.svg') }}" alt="Phone icon">
                         <a class="hover:text-grhs-olive" href="tel:{{ preg_replace('/[^+0-9]/', '', $contactSettings->phone) }}">{{ $contactSettings->phone }}</a>
                     </div>
                 @endif
                 @if (filled($contactSettings?->email))
                     <div class="flex items-center gap-3">
-                        <img class="h-[18px] w-[18px] shrink-0 object-contain" src="{{ asset('images/site/mail.svg') }}" alt="">
+                        <img class="h-[18px] w-[18px] shrink-0 object-contain" src="{{ asset('images/site/mail.svg') }}" alt="Email icon">
                         <a class="break-all hover:text-grhs-olive" href="mailto:{{ $contactSettings->email }}">{{ $contactSettings->email }}</a>
                     </div>
                 @endif
@@ -24,9 +24,9 @@
                     @if (is_array($socialLink) && filled($socialLink['platform'] ?? null) && filled($socialLink['text'] ?? null) && filled($socialLink['url'] ?? null))
                         <div class="flex items-center gap-3">
                             @if ($socialLink['platform'] === 'instagram')
-                                <img class="h-[18px] w-[18px] shrink-0 object-contain" src="{{ asset('images/site/insta.svg') }}" alt="">
+                                <img class="h-[18px] w-[18px] shrink-0 object-contain" src="{{ asset('images/site/insta.svg') }}" alt="Instagram icon">
                             @elseif ($socialLink['platform'] === 'whatsapp')
-                                <img class="h-[18px] w-[18px] shrink-0 object-contain" src="{{ asset('images/site/whatsapp.svg') }}" alt="">
+                                <img class="h-[18px] w-[18px] shrink-0 object-contain" src="{{ asset('images/site/whatsapp.svg') }}" alt="WhatsApp icon">
                             @else
                                 <span class="flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full border border-grhs-ink/50 text-[9px] font-bold leading-none text-grhs-ink" aria-hidden="true">
                                     @switch($socialLink['platform'])
@@ -64,10 +64,10 @@
                 </script>
             </div>
             <ul class="flex flex-wrap gap-x-5 gap-y-2 lg:col-start-4 lg:col-span-2 lg:justify-self-end">
-                <li><a href="#" class="hover:text-black">Legal notice</a></li>
-                <li><a href="#" class="hover:text-black">Terms &amp; conditions</a></li>
-                <li><a href="#" class="hover:text-black">Privace policy</a></li>
-                <li><a href="#" class="hover:text-black">Cookies policy</a></li>
+                <li><a href="{{ route('legal-notice') }}" class="hover:text-black">Legal notice</a></li>
+                <li><a href="{{ route('terms-and-conditions') }}" class="hover:text-black">Terms &amp; conditions</a></li>
+                <li><a href="{{ route('privacy-policy') }}" class="hover:text-black">Privacy policy</a></li>
+                <li><a href="{{ route('cookies-policy') }}" class="hover:text-black">Cookies policy</a></li>
             </ul>
         </div>
     </div>

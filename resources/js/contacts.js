@@ -44,7 +44,7 @@ if (mapContainer) {
 
             const marker = document.createElement('img');
             marker.src = mapContainer.dataset.markerImage;
-            marker.alt = '';
+            marker.alt = 'GRHS office location on map';
             marker.width = 45;
             marker.height = 45;
 

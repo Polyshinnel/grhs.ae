@@ -18,6 +18,22 @@ Route::get('/', function (OrganizationSchema $organizationSchema) {
 Route::get('/catalogues', [CataloguePageController::class, 'index'])
     ->middleware(NormalizePublicPageTrailingSlash::class)
     ->name('catalogues.index');
+Route::view('/legal-notice', 'pages.legal', [
+    'title' => 'Legal notice',
+    'canonical' => '/legal-notice',
+])->name('legal-notice');
+Route::view('/terms-and-conditions', 'pages.legal', [
+    'title' => 'Terms & conditions',
+    'canonical' => '/terms-and-conditions',
+])->name('terms-and-conditions');
+Route::view('/privacy-policy', 'pages.legal', [
+    'title' => 'Privacy policy',
+    'canonical' => '/privacy-policy',
+])->name('privacy-policy');
+Route::view('/cookies-policy', 'pages.legal', [
+    'title' => 'Cookies policy',
+    'canonical' => '/cookies-policy',
+])->name('cookies-policy');
 Route::get('/contacts', [ContactController::class, 'index'])
     ->middleware(NormalizePublicPageTrailingSlash::class)
     ->name('contacts.index');
