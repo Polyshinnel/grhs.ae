@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Restaurant & Hotel Tableware Supplier in Dubai, UAE | GRHS')
+@section('title', 'Golden Ratio Hospitality Supplies – Tableware Supplier Dubai')
 @section('description', 'HoReCa supplier in Dubai: premium tableware, glassware, cutlery, barware and kitchenware for hotels and restaurants across the UAE.')
 @section('canonical', '/')
 

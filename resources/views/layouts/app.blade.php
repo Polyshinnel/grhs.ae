@@ -21,9 +21,13 @@
     <meta property="og:title" content="@yield('title', 'GRHS | Golden Ratio Hospitality Supplies Trading LLC')">
     <meta property="og:description" content="@yield('description', 'Golden Ratio Hospitality Supplies Trading LLC — hospitality equipment and tableware in Dubai.')">
     <meta property="og:url" content="{{ $canonicalUrl }}">
+    <meta property="og:site_name" content="Golden Ratio Hospitality Supplies">
     <meta property="og:image" content="@yield('og_image', asset('og-image-1200x628.jpg'))">
     @isset($organizationSchema)
         <script type="application/ld+json">{!! json_encode($organizationSchema, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_INVALID_UTF8_SUBSTITUTE) !!}</script>
+    @endisset
+    @isset($websiteSchema)
+        <script type="application/ld+json">{!! json_encode($websiteSchema, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_INVALID_UTF8_SUBSTITUTE) !!}</script>
     @endisset
     @isset($breadcrumbSchema)
         <script type="application/ld+json">{!! json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_INVALID_UTF8_SUBSTITUTE) !!}</script>

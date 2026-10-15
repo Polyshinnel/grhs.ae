@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function (OrganizationSchema $organizationSchema) {
     return view('pages.home', [
         'organizationSchema' => $organizationSchema->make(ContactSettings::query()->find(1)),
+        'websiteSchema' => [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebSite',
+            'name' => 'Golden Ratio Hospitality Supplies',
+            'alternateName' => 'GRHS',
+            'url' => 'https://grhs.ae/',
+        ],
     ]);
 })->name('home');
 
